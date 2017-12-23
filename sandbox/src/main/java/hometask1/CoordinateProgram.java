@@ -1,7 +1,5 @@
 package hometask1;
 
-import static hometask1.Point.distance;
-
 public class CoordinateProgram {
 
     public static void main(String[] args) {
@@ -9,7 +7,7 @@ public class CoordinateProgram {
         Point p2 = new Point (7,5);
 
         System.out.println("Расстояние между точкой c координатами " + p1.getCoordinate() + " " +
-                "и точкой с координатами " + p2.getCoordinate() + " равно " + distance(p1,p2));
+                "и точкой с координатами " + p2.getCoordinate() + " равно " + p1.distance(p2));
     }
 
 }
