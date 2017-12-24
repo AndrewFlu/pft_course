@@ -1,4 +1,4 @@
-package hometask1;
+package ru.moneta.pft.sandbox;
 
 public class Point {
     // атрибуты
