@@ -1,5 +1,6 @@
 package ru.moneta.pft.addressbook;
 
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
@@ -19,7 +20,7 @@ public class GroupCreationTests {
     
     @BeforeMethod
     public void setUp() throws Exception {
-        wd = new FirefoxDriver();
+        wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true).setBinary("C://Program Files/Mozilla Firefox 53.2 ESR/firefox.exe"));
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
     }
     
