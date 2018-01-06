@@ -1,4 +1,4 @@
-package ru.moneta.pft.addressbook;
+package ru.moneta.pft.addressbook.model;
 
 public class GroupData {
     private final String name;

@@ -1,4 +1,4 @@
-package ru.moneta.pft.addressbook;
+package ru.moneta.pft.addressbook.tests;
 
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.BeforeMethod;
@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.*;
+import ru.moneta.pft.addressbook.model.ContactData;
 
 public class ContactCreationTests {
 
