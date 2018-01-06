@@ -4,13 +4,12 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.*;
 
 public class GroupCreationTests {
+
     FirefoxDriver wd;
     
     @BeforeMethod
@@ -21,6 +20,20 @@ public class GroupCreationTests {
         login("admin", "secret");
     }
 
+    @Test
+    public void testGroupCreation() {
+        gotoGroupPage();
+        initGroupCreation();
+        fillGroupForm(new GroupData("group3", "TestGroup3", "TestComment3"));
+        submitGroupCreation();
+        returnToGroupPage();
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        wd.quit();
+    }
+
     private void login(String userName, String password) {
         wd.findElement(By.name("user")).click();
         wd.findElement(By.name("user")).clear();
@@ -29,15 +42,6 @@ public class GroupCreationTests {
         wd.findElement(By.name("pass")).clear();
         wd.findElement(By.name("pass")).sendKeys(password);
         wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
-    }
-
-    @Test
-    public void testGroupCreation() {
-        gotoGroupPage();
-        initGroupCreation();
-        fillGroupForm(new GroupData("group3", "TestGroup3", "TestComment3"));
-        submitGroupCreation();
-        returnToGroupPage();
     }
 
     private void returnToGroupPage() {
@@ -68,11 +72,6 @@ public class GroupCreationTests {
         wd.findElement(By.linkText("groups")).click();
     }
 
-    @AfterMethod
-    public void tearDown() {
-        wd.quit();
-    }
-    
     public static boolean isAlertPresent(FirefoxDriver wd) {
         try {
             wd.switchTo().alert();
