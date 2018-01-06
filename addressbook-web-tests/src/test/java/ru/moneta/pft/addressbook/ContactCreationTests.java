@@ -23,9 +23,9 @@ public class ContactCreationTests {
     @Test
     public void testContactCreation() {
         initContactCreation();
-        fillContactForm(new ContactData("FirstName Contact 4", "MiddleName Contact 4",
-                "LastName Contact 4", "Contact4", "Company 4",
-                "+79111555500", "test4@yandex.ru"));
+        fillContactForm(new ContactData("FirstName Contact 5", "MiddleName Contact 5",
+                "LastName Contact 5", "Contact5", "Company 5",
+                "+79111555511", "test5@yandex.ru"));
         submitContactCreation();
         returnToHomePage();
     }

@@ -24,7 +24,7 @@ public class GroupCreationTests {
     public void testGroupCreation() {
         gotoGroupPage();
         initGroupCreation();
-        fillGroupForm(new GroupData("group3", "TestGroup3", "TestComment3"));
+        fillGroupForm(new GroupData("group4", "TestGroup4", "TestComment4"));
         submitGroupCreation();
         returnToGroupPage();
     }
