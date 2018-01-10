@@ -59,4 +59,16 @@ public class ContactHelper extends HelperBase{
         click(By.cssSelector("input[value=\"Update\"]"));
     }
 
+    public void createContact(ContactData contactData) {
+        initContactCreation();
+        fillContactForm(new ContactData("FirstName Contact 6", "MiddleName Contact 6",
+                "LastName Contact 6", "Contact6", "Company 6",
+                "+79111555522", "test6@yandex.ru", "group1"), true);
+        submitContactCreation();
+        returnToHomePage();
+    }
+
+    public boolean isThereAnContact() {
+        return isElementPresent(By.xpath("//tbody/tr[2]//input"));
+    }
 }
