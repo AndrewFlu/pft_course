@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.moneta.pft.addressbook.model.ContactData;
 
+import java.util.ArrayList;
+
 public class ContactHelper extends HelperBase{
 
     public ContactHelper(WebDriver wd) {
@@ -15,7 +17,7 @@ public class ContactHelper extends HelperBase{
     }
 
     public void returnToHomePage() {
-        click(By.linkText("home page"));
+        click(By.linkText("home"));
     }
 
     public void submitContactCreation() {
@@ -32,7 +34,12 @@ public class ContactHelper extends HelperBase{
         type(By.name("email"), contactData.getEmail());
 
         if (creation){
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+            if(isThereGroupToSelect(contactData)){
+                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+            } else {
+                return;
+            }
+
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
@@ -59,4 +66,23 @@ public class ContactHelper extends HelperBase{
         click(By.cssSelector("input[value=\"Update\"]"));
     }
 
+    public void createContact(ContactData contactData) {
+        initContactCreation();
+        fillContactForm(contactData, true);
+        submitContactCreation();
+        returnToHomePage();
+    }
+
+    public boolean isThereAnContact() {
+        return isElementPresent(By.name("selected[]"));
+    }
+
+    // для эксперимента со значением в селекторе
+    public boolean isThereGroupToSelect(ContactData contactData){
+        ArrayList<String>contact = new ArrayList<>();
+        for (String [] group : contact) {
+            group = group.wd.findElement(By.name("new_group")).getAttribute("value");
+        }
+        return contact.contains(contactData.getGroup());
+    }
 }
