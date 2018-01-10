@@ -12,5 +12,4 @@ public class ContactCreationTests extends TestBase{
                 "LastName Contact 6", "Contact6", "Company 6",
                 "+79111555522", "test6@yandex.ru", "group1"));
     }
-
 }
