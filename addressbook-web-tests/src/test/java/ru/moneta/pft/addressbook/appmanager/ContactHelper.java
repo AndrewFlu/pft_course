@@ -1,18 +1,24 @@
 package ru.moneta.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+
+import ru.moneta.pft.addressbook.appmanager.GroupHelper;
 import ru.moneta.pft.addressbook.model.ContactData;
+import ru.moneta.pft.addressbook.model.GroupData;
+
+import java.util.List;
 
 public class ContactHelper extends HelperBase{
+
 
     public ContactHelper(WebDriver wd) {
         super(wd);
     }
+    String[] allGroupsInSelect;
 
     public void returnToHomePage() {
         click(By.linkText("home page"));
@@ -23,6 +29,7 @@ public class ContactHelper extends HelperBase{
     }
 
     public void fillContactForm(ContactData contactData, boolean creation) {
+
         type(By.name("firstname"), contactData.getFirstName());
         type(By.name("middlename"), contactData.getMiddleName());
         type(By.name("lastname"), contactData.getLastName());
@@ -31,13 +38,53 @@ public class ContactHelper extends HelperBase{
         type(By.name("mobile"), contactData.getMobilePhone());
         type(By.name("email"), contactData.getEmail());
 
-        if (creation){
-            // отключаю, т.к. тест на модифиакцию контактов может упасть, если группы отсутствуют (на этапе выбора группы из селектора во время создания контакта)
-            // new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+
+        if (creation){        // если создаем контакт
+            // выполним проверку значений в селекторе выбора групп.
+            String[] allGroupsInSelect = getAllValuesInSelect(By.name("new_group"));
+            // проверим список значений в селекторе по длинне.
+            if(allGroupsInSelect.length > 1){
+                // Если в базе уже заведена как минимум 1 группа -
+                // прогоним список значений селектора на предмет совпадения имени уже имеющейся группы и имени группы самого контакта
+                for (int n=0; n<allGroupsInSelect.length; n++) {
+                    boolean isExactlyGroup = allGroupsInSelect[n].equals(contactData.getGroup());
+                    // и если имена совпадают - выбираем это значение из списка
+                    if (isExactlyGroup) {
+                        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+                        return;
+                    }
+                }
+            } else{
+                //  если же список селектора состоит из одного значения по умолчанию "[none]"
+                // создадим группу. И в качесте имени группы укажем имя группы самого контакта
+                new NavigationHelper(wd).gotoGroupPage();
+                new GroupHelper(wd).createGroup(new GroupData(contactData.getGroup(), null, null));
+                new NavigationHelper(wd).gotoContactPage();
+                // продолжим сценарий создания контакта
+                new ContactHelper(wd).initContactCreation();
+                // вызовем рекурсию, где уже будет выполняться блок if(allGroupsInSelect.length > 1)
+                // контакт создастся, а в качестве группы - будет выбрана вновь созданная группа
+                fillContactForm(contactData, true);
+            }
+
             Assert.assertTrue(isElementPresent(By.name("new_group")));
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
+    }
+
+    private String[] getAllValuesInSelect(By locator) {
+        Select select = new Select(wd.findElement(locator));
+        // получаем список всех элементов в селекте
+        List<WebElement> allGroups = select.getOptions();
+        int size = allGroups.size();
+        // заполняем массив строковыми значениями из селекта
+        allGroupsInSelect = new String[size];
+        for (int n = 0; n < size; n++) {
+            String groupInSelect = allGroups.get(n).getText().toString();
+            allGroupsInSelect[n] = groupInSelect;
+        }
+        return allGroupsInSelect;
     }
 
     public void initContactCreation() {

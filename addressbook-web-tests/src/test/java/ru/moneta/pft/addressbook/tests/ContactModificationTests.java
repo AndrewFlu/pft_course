@@ -11,11 +11,11 @@ public class ContactModificationTests extends TestBase {
         if (! app.getContactHelper().isThereAnContact()){
             app.getContactHelper().createContact(new ContactData("FirstName Contact 6", "MiddleName Contact 6",
                     "LastName Contact 6", "Contact6", "Company 6",
-                    "+79111555522", "test6@yandex.ru", "group1"));
+                    "+79111555522", "test6@yandex.ru", "group10"));
         }
         app.getContactHelper().initContactModification();
         app.getContactHelper().fillContactForm(new ContactData("Mod name 1", "Mod midName 1", "Mod lastName 1",
-                "Mod nickName 1", "Mod company 1", "89379317777", "mod+email1@gmail.com", null), false);
+                "Mod nickName 1", "Mod company 1", "89379317777", "mod+email1@gmail.com", "group10"), false);
         app.getContactHelper().submitContactModification();
         app.getContactHelper().returnToHomePage();
     }
