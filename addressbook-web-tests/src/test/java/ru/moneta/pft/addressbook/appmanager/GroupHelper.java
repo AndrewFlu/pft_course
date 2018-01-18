@@ -2,7 +2,6 @@ package ru.moneta.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.moneta.pft.addressbook.model.GroupData;
 
 public class GroupHelper extends HelperBase {
@@ -33,8 +32,8 @@ public class GroupHelper extends HelperBase {
         click(By.cssSelector("#content input:nth-of-type(5)"));
     }
 
-    public void selectGroup() {
-        click(By.name("selected[]"));
+    public void selectGroup(int index) {
+        wd.findElements(By.name("selected[]")).get(index).click();
     }
 
     public void initGroupModification() {
