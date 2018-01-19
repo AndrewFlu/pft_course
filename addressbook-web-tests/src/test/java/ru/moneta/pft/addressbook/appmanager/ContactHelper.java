@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-import ru.moneta.pft.addressbook.appmanager.GroupHelper;
 import ru.moneta.pft.addressbook.model.ContactData;
 import ru.moneta.pft.addressbook.model.GroupData;
 
