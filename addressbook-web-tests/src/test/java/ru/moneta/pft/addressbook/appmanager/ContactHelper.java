@@ -9,6 +9,7 @@ import org.testng.Assert;
 import ru.moneta.pft.addressbook.model.ContactData;
 import ru.moneta.pft.addressbook.model.GroupData;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ContactHelper extends HelperBase{
@@ -90,12 +91,12 @@ public class ContactHelper extends HelperBase{
         click(By.linkText("add new"));
     }
 
-    public void initContactModification() {
-        click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+    public void initContactModification(int index) {
+        wd.findElements(By.xpath("//table//tr[@name='entry']/td[8]" )).get(index).click();
     }
 
-    public void selectContact() {
-        click(By.xpath("//tr[2]/td/input[@name='selected[]']"));
+    public void selectContact(int i) {
+        wd.findElements(By.xpath("//table//input[@name='selected[]']")).get(i).click();
     }
 
     public void deleteContact() {
@@ -116,5 +117,18 @@ public class ContactHelper extends HelperBase{
 
     public boolean isThereAnContact() {
         return isElementPresent(By.xpath("//tbody/tr[2]//input"));
+    }
+
+    public List<ContactData> getContactList() {
+        List<ContactData> contactList = new ArrayList<>();
+        List<WebElement> elements = wd.findElements(By.cssSelector("#maintable>tbody>tr[name='entry']"));
+        for (WebElement element : elements){
+            String lastName = element.findElement(By.cssSelector("td:nth-of-type(2)")).getText();
+            String firstName = element.findElement(By.cssSelector("td:nth-of-type(3)")).getText();
+            int id = Integer.parseInt(element.findElement(By.cssSelector("#maintable>tbody>tr[name='entry']>td>input")).getAttribute("id"));
+            contactList.add(new ContactData(id, firstName, null, lastName,
+                    null, null, null, null, null));
+        }
+        return contactList;
     }
 }
