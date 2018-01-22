@@ -3,8 +3,6 @@ package ru.moneta.pft.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.moneta.pft.addressbook.model.ContactData;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class ContactDeletionTests extends TestBase {
