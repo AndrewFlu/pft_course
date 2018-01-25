@@ -13,11 +13,12 @@ public class ContactCreationTests extends TestBase{
     public void testContactCreation() {
         app.getNavigationHelper().gotoContactPage();
         List<ContactData> before = app.getContactHelper().getContactList();
-        ContactData contactData = new ContactData("FirstName Contact 3", "MiddleName Contact 3",
-                "LastName Contact 3", "Contact3", "Company 3",
+        ContactData contactData = new ContactData("FirstName1", "MiddleName 2",
+                "LastName1", "Contact2", "Company 1",
                 "+79111555522", "test2@yandex.ru", "group2");
         app.getContactHelper().createContact(contactData);
         List<ContactData> after = app.getContactHelper().getContactList();
+
         before.add(contactData);
         Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
         before.sort(byId);

@@ -14,8 +14,6 @@ public class GroupDeletionTests extends TestBase{
         if(! app.getGroupHelper().isThereAnGroup()){
             app.getGroupHelper().createGroup(new GroupData("group2", "header 2", null));
         }
-        // считаем количество групп в этом месте,
-        // т.к. если групп нет, то для теста группа будет создана в теле конструкции if выше.
         List<GroupData> before = app.getGroupHelper().getGroupList();
         app.getGroupHelper().selectGroup(before.size() - 1);
         app.getGroupHelper().deleteSelectedGroups();

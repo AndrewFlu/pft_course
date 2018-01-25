@@ -5,7 +5,6 @@ import org.testng.annotations.Test;
 import ru.moneta.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class GroupCreationTests extends TestBase{
@@ -14,7 +13,7 @@ public class GroupCreationTests extends TestBase{
     public void testGroupCreation() {
         app.getNavigationHelper().gotoGroupPage();
         List<GroupData> before = app.getGroupHelper().getGroupList();
-        GroupData group = new GroupData("group9", "header 1", null);
+        GroupData group = new GroupData("group 1", "header 1", null);
         app.getGroupHelper().createGroup(group);
         List<GroupData> after = app.getGroupHelper().getGroupList();
         Assert.assertEquals(after.size(), before.size() + 1);
