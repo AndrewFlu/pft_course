@@ -58,7 +58,7 @@ public class ContactHelper extends HelperBase{
                 //  если же список селектора состоит из одного значения по умолчанию "[none]"
                 // создадим группу. И в качесте имени группы укажем имя группы самого контакта
                 new NavigationHelper(wd).groupPage();
-                new GroupHelper(wd).create(new GroupData(contactData.getGroup(), null, null));
+                new GroupHelper(wd).create(new GroupData().withName(contactData.getGroup()));
                 new NavigationHelper(wd).gotoContactPage();
                 // продолжим сценарий создания контакта
                 new ContactHelper(wd).initContactCreation();
