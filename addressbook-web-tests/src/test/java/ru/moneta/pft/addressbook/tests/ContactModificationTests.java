@@ -1,11 +1,13 @@
 package ru.moneta.pft.addressbook.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.moneta.pft.addressbook.model.ContactData;
+import ru.moneta.pft.addressbook.model.Contacts;
 
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 public class ContactModificationTests extends TestBase {
 
@@ -21,17 +23,15 @@ public class ContactModificationTests extends TestBase {
 
     @Test
     public void testContactModification(){
-        Set<ContactData> before = app.contact().all();
+        Contacts before = app.contact().all();
         ContactData modifiedContact = before.iterator().next();
         ContactData contact = new ContactData()
-                .withId(modifiedContact.getId()).withFirstName("ModFirstName2").withMiddleName("ModMiddleName2")
-                .withLastName("ModLastName2").withNickName("ModNickName2").withCompany("ModCompany2")
+                .withId(modifiedContact.getId()).withFirstName("ModFirstName3").withMiddleName("ModMiddleName3")
+                .withLastName("ModLastName3").withNickName("ModNickName2").withCompany("ModCompany2")
                 .withMobilePhone("+79111555555").withEmail("test5@yandex.ru").withGroup("group5");
         app.contact().modify(contact);
-        Set<ContactData> after = app.contact().all();
-
-        before.remove(modifiedContact);
-        before.add(contact);
-        Assert.assertEquals(after, before);
+        Contacts after = app.contact().all();
+        assertEquals(after.size(), before.size());
+        assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
     }
 }
