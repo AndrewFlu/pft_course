@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-
 import ru.moneta.pft.addressbook.model.ContactData;
 import ru.moneta.pft.addressbook.model.GroupData;
 
@@ -59,7 +58,7 @@ public class ContactHelper extends HelperBase{
                 // создадим группу. И в качесте имени группы укажем имя группы самого контакта
                 new NavigationHelper(wd).groupPage();
                 new GroupHelper(wd).create(new GroupData().withName(contactData.getGroup()));
-                new ContactHelper(wd).ContactPage();
+                new NavigationHelper(wd).ContactPage();
                 // продолжим сценарий создания контакта
                 new ContactHelper(wd).initContactCreation();
                 // вызовем рекурсию, где уже будет выполняться блок if(allGroupsInSelect.length > 1)
@@ -118,7 +117,7 @@ public class ContactHelper extends HelperBase{
     public void delete(int index) {
         selectContact(index);
         deleteContact();
-        ContactPage();
+        new NavigationHelper(wd).ContactPage();
     }
 
     public void modify(int index, ContactData contactData) {
@@ -128,18 +127,11 @@ public class ContactHelper extends HelperBase{
         returnToHomePage();
     }
 
-    public void ContactPage() {
-        if (isElementPresent(By.id("maintable"))){
-            return;
-        }
-        click(By.linkText("home"));
-    }
-
     public boolean isThereAnContact() {
         return isElementPresent(By.xpath("//tbody/tr[2]//input"));
     }
 
-    public List<ContactData> getContactList() {
+    public List<ContactData> list() {
         List<ContactData> contactList = new ArrayList<>();
         List<WebElement> elements = wd.findElements(By.cssSelector("#maintable>tbody>tr[name='entry']"));
         for (WebElement element : elements){
