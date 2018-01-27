@@ -59,7 +59,7 @@ public class ContactHelper extends HelperBase{
                 // создадим группу. И в качесте имени группы укажем имя группы самого контакта
                 new NavigationHelper(wd).groupPage();
                 new GroupHelper(wd).create(new GroupData().withName(contactData.getGroup()));
-                new NavigationHelper(wd).gotoContactPage();
+                new ContactHelper(wd).ContactPage();
                 // продолжим сценарий создания контакта
                 new ContactHelper(wd).initContactCreation();
                 // вызовем рекурсию, где уже будет выполняться блок if(allGroupsInSelect.length > 1)
@@ -113,6 +113,26 @@ public class ContactHelper extends HelperBase{
         fillContactForm(contactData, true);
         submitContactCreation();
         returnToHomePage();
+    }
+
+    public void delete(int index) {
+        selectContact(index);
+        deleteContact();
+        ContactPage();
+    }
+
+    public void modify(int index, ContactData contactData) {
+        initContactModification(index);
+        fillContactForm(contactData, false);
+        submitContactModification();
+        returnToHomePage();
+    }
+
+    public void ContactPage() {
+        if (isElementPresent(By.id("maintable"))){
+            return;
+        }
+        click(By.linkText("home"));
     }
 
     public boolean isThereAnContact() {

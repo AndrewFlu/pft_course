@@ -23,7 +23,7 @@ public class GroupModificationTests extends TestBase{
             app.group().create(new GroupData().withName("NewGroup0").withHeader("NewHeader0").withFooter("NewFooter0"));
         }
     }
-    @Test
+    @Test (enabled = false)
     public void testGroupModification(){
         Groups before = app.group().all();
         GroupData modifyGroup = before.iterator().next();
