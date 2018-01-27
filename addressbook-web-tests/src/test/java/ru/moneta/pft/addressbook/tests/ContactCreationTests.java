@@ -4,25 +4,21 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.moneta.pft.addressbook.model.ContactData;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 
 public class ContactCreationTests extends TestBase{
 
     @Test
     public void testContactCreation() {
         app.goTo().ContactPage();
-        List<ContactData> before = app.contact().list();
-        ContactData contactData = new ContactData()
+        Set<ContactData> before = app.contact().all();
+        ContactData contact = new ContactData()
                 .withFirstName("FirstName1").withMiddleName("MiddleName1").withLastName("LastName1").withNickName("NickName1")
                 .withCompany("Company 1").withMobilePhone("+79111555522").withEmail("test2@yandex.ru").withGroup("group1");
-        app.contact().createContact(contactData);
-        List<ContactData> after = app.contact().list();
+        app.contact().createContact(contact);
+        Set<ContactData> after = app.contact().all();
 
-        before.add(contactData);
-        Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
-        before.sort(byId);
-        after.sort(byId);
+        before.add(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()));
         Assert.assertEquals(after, before);
     }
 }

@@ -8,8 +8,9 @@ import org.testng.Assert;
 import ru.moneta.pft.addressbook.model.ContactData;
 import ru.moneta.pft.addressbook.model.GroupData;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase{
 
@@ -90,12 +91,16 @@ public class ContactHelper extends HelperBase{
         click(By.linkText("add new"));
     }
 
-    public void initContactModification(int index) {
-        wd.findElements(By.xpath("//table//tr[@name='entry']/td[8]" )).get(index).click();
+    private void initContactModificationById(int id) {
+        wd.findElement(By.xpath("//tbody/tr/td/input[@id='" + id + "']/../../td[8]")).click();
     }
 
     public void selectContact(int i) {
         wd.findElements(By.xpath("//table//input[@name='selected[]']")).get(i).click();
+    }
+
+    private void selectContactById(int id) {
+        wd.findElement(By.cssSelector("input[id='" + id + "']")).click();
     }
 
     public void deleteContact() {
@@ -114,15 +119,15 @@ public class ContactHelper extends HelperBase{
         returnToHomePage();
     }
 
-    public void delete(int index) {
-        selectContact(index);
+    public void delete(ContactData contact) {
+        selectContactById(contact.getId());
         deleteContact();
         new NavigationHelper(wd).ContactPage();
     }
 
-    public void modify(int index, ContactData contactData) {
-        initContactModification(index);
-        fillContactForm(contactData, false);
+    public void modify(ContactData contact) {
+        initContactModificationById(contact.getId());
+        fillContactForm(contact, false);
         submitContactModification();
         returnToHomePage();
     }
@@ -131,8 +136,8 @@ public class ContactHelper extends HelperBase{
         return isElementPresent(By.xpath("//tbody/tr[2]//input"));
     }
 
-    public List<ContactData> list() {
-        List<ContactData> contactList = new ArrayList<>();
+    public Set<ContactData> all() {
+        Set<ContactData> contactList = new HashSet<ContactData>();
         List<WebElement> elements = wd.findElements(By.cssSelector("#maintable>tbody>tr[name='entry']"));
         for (WebElement element : elements){
             String lastName = element.findElement(By.cssSelector("td:nth-of-type(2)")).getText();

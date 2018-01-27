@@ -7,7 +7,7 @@ import ru.moneta.pft.addressbook.appmanager.ApplicationManager;
 
 public class TestBase {
 
-    protected static final ApplicationManager app = new ApplicationManager(BrowserType.GOOGLECHROME);
+    protected static final ApplicationManager app = new ApplicationManager(BrowserType.FIREFOX);
 
     @BeforeSuite
     public void setUp() throws Exception {
