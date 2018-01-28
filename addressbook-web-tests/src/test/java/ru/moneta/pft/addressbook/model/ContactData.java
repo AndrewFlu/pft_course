@@ -84,11 +84,6 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withGroup(String group) {
-        this.group = group;
-        return this;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -103,6 +98,11 @@ public class ContactData {
     public int hashCode() {
 
         return Objects.hash(getId(), getFirstName(), getLastName());
+    }
+
+    public ContactData withGroup(String group) {
+        this.group = group;
+        return this;
     }
 
     @Override
