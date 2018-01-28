@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.moneta.pft.addressbook.model.ContactData;
-import ru.moneta.pft.addressbook.model.Contacts;
 import ru.moneta.pft.addressbook.model.GroupData;
 
 import java.util.List;
@@ -135,8 +134,8 @@ public class ContactHelper extends HelperBase{
         return isElementPresent(By.xpath("//tbody/tr[2]//input"));
     }
 
-    public Contacts all() {
-        Contacts contactList = new Contacts();
+    public Set<ContactData> all() {
+        Set<ContactData> contactList = new HashSet<ContactData>();
         List<WebElement> elements = wd.findElements(By.cssSelector("#maintable>tbody>tr[name='entry']"));
         for (WebElement element : elements){
             String lastName = element.findElement(By.cssSelector("td:nth-of-type(2)")).getText();
