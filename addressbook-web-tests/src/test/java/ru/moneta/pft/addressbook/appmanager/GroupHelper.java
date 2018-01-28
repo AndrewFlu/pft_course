@@ -77,20 +77,14 @@ public class GroupHelper extends HelperBase {
         return wd.findElements(By.name("selected[]")).size();
     }
 
-    private Groups cashedGroups = null;
-
-
     public Groups all() {
-        if (cashedGroups != null){
-            return new Groups(cashedGroups);
-        }
-        Groups cashedGroups = new Groups();
+        Groups groupList = new Groups();
         List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
         for (WebElement element : elements){
             String name = element.getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            cashedGroups.add(new GroupData().withId(id).withName(name));
+            groupList.add(new GroupData().withId(id).withName(name));
         }
-        return new Groups(cashedGroups);
+        return groupList;
     }
 }
