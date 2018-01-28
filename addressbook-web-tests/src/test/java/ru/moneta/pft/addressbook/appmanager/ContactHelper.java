@@ -136,7 +136,7 @@ public class ContactHelper extends HelperBase{
         return isElementPresent(By.xpath("//tbody/tr[2]//input"));
     }
 
-    public Set<ContactData> all() {
+    public Contacts all() {
         Set<ContactData> contactList = new HashSet<ContactData>();
         List<WebElement> elements = wd.findElements(By.cssSelector("#maintable>tbody>tr[name='entry']"));
         for (WebElement element : elements){
