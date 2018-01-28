@@ -94,10 +94,6 @@ public class ContactHelper extends HelperBase{
         wd.findElement(By.xpath("//tbody/tr/td/input[@id='" + id + "']/../../td[8]")).click();
     }
 
-    public void selectContact(int i) {
-        wd.findElements(By.xpath("//table//input[@name='selected[]']")).get(i).click();
-    }
-
     private void selectContactById(int id) {
         wd.findElement(By.cssSelector("input[id='" + id + "']")).click();
     }
@@ -111,16 +107,18 @@ public class ContactHelper extends HelperBase{
         click(By.cssSelector("input[value=\"Update\"]"));
     }
 
-    public void createContact(ContactData contactData) {
+    public void create(ContactData contactData) {
         initContactCreation();
         fillContactForm(contactData, true);
         submitContactCreation();
+        cashedContacts = null;
         returnToHomePage();
     }
 
     public void delete(ContactData contact) {
         selectContactById(contact.getId());
         deleteContact();
+        cashedContacts = null;
         new NavigationHelper(wd).ContactPage();
     }
 
@@ -128,6 +126,7 @@ public class ContactHelper extends HelperBase{
         initContactModificationById(contact.getId());
         fillContactForm(contact, false);
         submitContactModification();
+        cashedContacts = null;
         returnToHomePage();
     }
 
@@ -135,15 +134,24 @@ public class ContactHelper extends HelperBase{
         return isElementPresent(By.xpath("//tbody/tr[2]//input"));
     }
 
+    public int count(){
+        return wd.findElements(By.cssSelector("tbody>tr>td>input")).size();
+    }
+
+    private Contacts cashedContacts = null;
+
     public Contacts all() {
-        Contacts contactList = new Contacts();
+        if (cashedContacts != null){
+            return new Contacts(cashedContacts);
+        }
+        Contacts cashedContacts = new Contacts();
         List<WebElement> elements = wd.findElements(By.cssSelector("#maintable>tbody>tr[name='entry']"));
         for (WebElement element : elements){
             String lastName = element.findElement(By.cssSelector("td:nth-of-type(2)")).getText();
             String firstName = element.findElement(By.cssSelector("td:nth-of-type(3)")).getText();
             int id = Integer.parseInt(element.findElement(By.cssSelector("#maintable>tbody>tr[name='entry']>td>input")).getAttribute("id"));
-            contactList.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName));
+            cashedContacts.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName));
         }
-        return contactList;
+        return new Contacts(cashedContacts);
     }
 }
