@@ -144,7 +144,7 @@ public class ContactHelper extends HelperBase{
         if (cashedContacts != null){
             return new Contacts(cashedContacts);
         }
-        Contacts cashedContacts = new Contacts();
+        cashedContacts = new Contacts();
         List<WebElement> elements = wd.findElements(By.cssSelector("#maintable>tbody>tr[name='entry']"));
         for (WebElement element : elements){
             String lastName = element.findElement(By.cssSelector("td:nth-of-type(2)")).getText();
