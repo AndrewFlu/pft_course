@@ -35,6 +35,11 @@ public class ContactHelper extends HelperBase{
         type(By.name("lastname"), contactData.getLastName());
         type(By.name("nickname"), contactData.getNickName());
         type(By.name("company"), contactData.getCompany());
+<<<<<<< HEAD
+=======
+        type(By.name("address"), contactData.getAddress());
+        type(By.name("home"), contactData.getHomePhone());
+>>>>>>> parent of 1844a65... Решено. Задание 11
         type(By.name("mobile"), contactData.getMobilePhone());
         type(By.name("email"), contactData.getEmail());
 
@@ -95,8 +100,15 @@ public class ContactHelper extends HelperBase{
         wd.findElement(By.xpath("//tbody/tr/td/input[@id='" + id + "']/../../td[8]")).click();
     }
 
+<<<<<<< HEAD
     public void selectContact(int i) {
         wd.findElements(By.xpath("//table//input[@name='selected[]']")).get(i).click();
+=======
+//        wd.findElement(By.xpath("//tbody/tr/td/input[@id='" + id + "']/../../td[8]")).click();
+          wd.findElement(By.xpath(String.format("//input[@id='%s']/../../td[8]/a", id))).click();
+//        wd.findElement(By.xpath(String.format("//tr[.//input[@id='%s']]/td[8]/a", id))).click();
+//        wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
+>>>>>>> parent of 1844a65... Решено. Задание 11
     }
 
     private void selectContactById(int id) {
@@ -145,6 +157,45 @@ public class ContactHelper extends HelperBase{
             int id = Integer.parseInt(element.findElement(By.cssSelector("#maintable>tbody>tr[name='entry']>td>input")).getAttribute("id"));
             contactList.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName));
         }
+<<<<<<< HEAD
         return contactList;
+=======
+        cashedContacts = new Contacts();
+        List<WebElement> rows = wd.findElements(By.name("entry"));
+
+        for (WebElement row : rows){
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            int id = Integer.parseInt(cells.get(0).findElement(By.name("selected[]")).getAttribute("id"));
+            String firstName = cells.get(2).getText();
+            String lastName = cells.get(1).getText();
+            String address = cells.get(3).getText();
+            String[] emails = cells.get(4).getText().split("\n");
+            String phones = cells.get(5).getText();
+            cashedContacts.add(new ContactData()
+                    .withId(id).withFirstName(firstName).withLastName(lastName).withAddress(address)
+                    .withEmail(emails[0])
+                    .withAllPhones(phones));
+        }
+        return new Contacts(cashedContacts);
+    }
+
+    public ContactData infoFromEditForm(ContactData contact) {
+        initContactModificationById(contact.getId());
+        String firstName = wd.findElement(By.name("firstname")).getAttribute("value");
+        String middleName = wd.findElement(By.name("middlename")).getAttribute("value");
+        String lastName = wd.findElement(By.name("lastname")).getAttribute("value");
+        String nickName = wd.findElement(By.name("nickname")).getAttribute("value");
+        String company = wd.findElement(By.name("company")).getAttribute("value");
+        String address = wd.findElement(By.name("address")).getText();
+        String homePhone = wd.findElement(By.name("home")).getAttribute("value");
+        String mobilePhone = wd.findElement(By.name("mobile")).getAttribute("value");
+        String workPhone = wd.findElement(By.name("work")).getAttribute("value");
+        String email = wd.findElement(By.name("email")).getAttribute("value");
+        wd.navigate().back();
+        return new ContactData()
+                .withId(contact.getId()).withFirstName(firstName).withMiddleName(middleName).withLastName(lastName)
+                .withNickName(nickName).withCompany(company).withAddress(address)
+                .withHomePhone(homePhone).withMobilePhone(mobilePhone).withWorkPhone(workPhone).withEmail(email);
+>>>>>>> parent of 1844a65... Решено. Задание 11
     }
 }

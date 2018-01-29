@@ -10,6 +10,11 @@ public class ContactData {
     private String lastName;
     private String nickName;
     private String company;
+<<<<<<< HEAD
+=======
+    private String address;
+    private String homePhone;
+>>>>>>> parent of 1844a65... Решено. Задание 11
     private String mobilePhone;
     private String email;
     private String group;
@@ -30,9 +35,19 @@ public class ContactData {
     public String getCompany() {
         return company;
     }
+<<<<<<< HEAD
     public String getMobilePhone() {
         return mobilePhone;
     }
+=======
+    public String getAddress() { return address; }
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
+    public String getHomePhone() { return homePhone; }
+    public String getWorkPhone() { return workPhone; }
+    public String getAllPhones() { return allPhones; }
+>>>>>>> parent of 1844a65... Решено. Задание 11
     public String getEmail() {
         return email;
     }
@@ -74,6 +89,14 @@ public class ContactData {
         return this;
     }
 
+<<<<<<< HEAD
+=======
+    public ContactData withAddress(String address) {
+        this.address = address;
+        return this;
+    }
+
+>>>>>>> parent of 1844a65... Решено. Задание 11
     public ContactData withMobilePhone(String mobilePhone) {
         this.mobilePhone = mobilePhone;
         return this;
@@ -84,6 +107,14 @@ public class ContactData {
         return this;
     }
 
+<<<<<<< HEAD
+=======
+    public ContactData withGroup(String group) {
+        this.group = group;
+        return this;
+    }
+
+>>>>>>> parent of 1844a65... Решено. Задание 11
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
