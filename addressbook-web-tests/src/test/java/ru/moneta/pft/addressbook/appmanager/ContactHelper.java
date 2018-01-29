@@ -6,10 +6,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.moneta.pft.addressbook.model.ContactData;
-import ru.moneta.pft.addressbook.model.Contacts;
 import ru.moneta.pft.addressbook.model.GroupData;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase{
 
@@ -34,9 +35,17 @@ public class ContactHelper extends HelperBase{
         type(By.name("lastname"), contactData.getLastName());
         type(By.name("nickname"), contactData.getNickName());
         type(By.name("company"), contactData.getCompany());
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        type(By.name("address"), contactData.getAddress());
+        type(By.name("home"), contactData.getHomePhone());
+>>>>>>> parent of 1844a65... Решено. Задание 11
+=======
         type(By.name("address"), contactData.getAddress());
         type(By.name("address2"), contactData.getAddress2());
         type(By.name("home"), contactData.getHomePhone());
+>>>>>>> parent of 81ab83f... Revert "Мердж проекта"
         type(By.name("mobile"), contactData.getMobilePhone());
         type(By.name("work"), contactData.getWorkPhone());
         type(By.name("email"), contactData.getEmail());
@@ -102,10 +111,22 @@ public class ContactHelper extends HelperBase{
 //        List<WebElement> cells = tableRow.findElements(By.tagName("td"));
 //        cells.get(7).findElement(By.tagName("a")).click();
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+    public void selectContact(int i) {
+        wd.findElements(By.xpath("//table//input[@name='selected[]']")).get(i).click();
+=======
+//        wd.findElement(By.xpath("//tbody/tr/td/input[@id='" + id + "']/../../td[8]")).click();
+          wd.findElement(By.xpath(String.format("//input[@id='%s']/../../td[8]/a", id))).click();
+//        wd.findElement(By.xpath(String.format("//tr[.//input[@id='%s']]/td[8]/a", id))).click();
+//        wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
+>>>>>>> parent of 1844a65... Решено. Задание 11
+=======
 //        wd.findElement(By.xpath("//tbody/tr/td/input[@id='" + id + "']/../../td[8]")).click();
 //        wd.findElement(By.xpath(String.format("//input[@id='%s']/../../td[8]/a", id))).click();
         wd.findElement(By.xpath(String.format("//tr[.//input[@id='%s']]/td[8]/a", id))).click();
 //        wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
+>>>>>>> parent of 81ab83f... Revert "Мердж проекта"
     }
 
     private void selectContactById(int id) {
@@ -155,8 +176,10 @@ public class ContactHelper extends HelperBase{
     private Contacts cashedContacts = null;
 
     public Contacts all() {
+
         if (cashedContacts != null){
             return new Contacts(cashedContacts);
+
         }
         cashedContacts = new Contacts();
         List<WebElement> rows = wd.findElements(By.name("entry"));
@@ -174,6 +197,28 @@ public class ContactHelper extends HelperBase{
                     .withAllEmails(emails)
                     .withAllPhones(phones));
         }
+<<<<<<< HEAD
+<<<<<<< HEAD
+        return contactList;
+=======
+        cashedContacts = new Contacts();
+        List<WebElement> rows = wd.findElements(By.name("entry"));
+
+        for (WebElement row : rows){
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            int id = Integer.parseInt(cells.get(0).findElement(By.name("selected[]")).getAttribute("id"));
+            String firstName = cells.get(2).getText();
+            String lastName = cells.get(1).getText();
+            String address = cells.get(3).getText();
+            String[] emails = cells.get(4).getText().split("\n");
+            String phones = cells.get(5).getText();
+            cashedContacts.add(new ContactData()
+                    .withId(id).withFirstName(firstName).withLastName(lastName).withAddress(address)
+                    .withEmail(emails[0])
+                    .withAllPhones(phones));
+        }
+=======
+>>>>>>> parent of 81ab83f... Revert "Мердж проекта"
         return new Contacts(cashedContacts);
     }
 
@@ -189,13 +234,21 @@ public class ContactHelper extends HelperBase{
         String mobilePhone = wd.findElement(By.name("mobile")).getAttribute("value");
         String workPhone = wd.findElement(By.name("work")).getAttribute("value");
         String email = wd.findElement(By.name("email")).getAttribute("value");
+<<<<<<< HEAD
+=======
         String email2 = wd.findElement(By.name("email2")).getAttribute("value");
         String email3 = wd.findElement(By.name("email3")).getAttribute("value");
+>>>>>>> parent of 81ab83f... Revert "Мердж проекта"
         wd.navigate().back();
         return new ContactData()
                 .withId(contact.getId()).withFirstName(firstName).withMiddleName(middleName).withLastName(lastName)
                 .withNickName(nickName).withCompany(company).withAddress(address)
+<<<<<<< HEAD
+                .withHomePhone(homePhone).withMobilePhone(mobilePhone).withWorkPhone(workPhone).withEmail(email);
+>>>>>>> parent of 1844a65... Решено. Задание 11
+=======
                 .withHomePhone(homePhone).withMobilePhone(mobilePhone).withWorkPhone(workPhone)
                 .withEmail(email).withEmail2(email2).withEmail3(email3);
+>>>>>>> parent of 81ab83f... Revert "Мердж проекта"
     }
 }
