@@ -18,7 +18,7 @@ public class ContactPhoneTests extends TestBase {
         if(app.contact().count() == 0){
             app.contact().create(new ContactData()
                     .withFirstName("TestName1").withLastName("TestLastName1")
-                    .withMobilePhone("111").withWorkPhone("333"));
+                    .withMobilePhone("1-1-1").withWorkPhone("3 33"));
         }
     }
 
@@ -35,7 +35,7 @@ public class ContactPhoneTests extends TestBase {
                 .collect(Collectors.joining("\n"));
     }
 
-    public static String cleanedPhone(String phone){
+    private static String cleanedPhone(String phone){
         return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
     }
 }
