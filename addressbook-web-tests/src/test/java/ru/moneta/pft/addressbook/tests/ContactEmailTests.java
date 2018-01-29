@@ -17,6 +17,7 @@ public class ContactEmailTests extends TestBase {
         app.goTo().ContactPage();
         if(app.contact().count() == 0){
             app.contact().create(new ContactData().withFirstName("Avril").withLastName("Lavigne")
+                    .withCompany("RockStar").withAddress("Canada, Ontario")
                     .withEmail("avril-lavigne@mail.com").withEmail2("avril@mail.com"));
         }
     }

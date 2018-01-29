@@ -103,8 +103,8 @@ public class ContactHelper extends HelperBase{
 //        cells.get(7).findElement(By.tagName("a")).click();
 
 //        wd.findElement(By.xpath("//tbody/tr/td/input[@id='" + id + "']/../../td[8]")).click();
-//        wd.findElement(By.xpath(String.format("//input[@id='%s']/../../td[8]/a", id))).click();
-        wd.findElement(By.xpath(String.format("//tr[.//input[@id='%s']]/td[8]/a", id))).click();
+        wd.findElement(By.xpath(String.format("//input[@id='%s']/../../td[8]/a", id))).click();
+//        wd.findElement(By.xpath(String.format("//tr[.//input[@id='%s']]/td[8]/a", id))).click();
 //        wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
     }
 
