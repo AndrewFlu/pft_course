@@ -154,12 +154,20 @@ public class ContactHelper extends HelperBase{
             return new Contacts(cashedContacts);
         }
         cashedContacts = new Contacts();
-        List<WebElement> elements = wd.findElements(By.cssSelector("#maintable>tbody>tr[name='entry']"));
-        for (WebElement element : elements){
-            String lastName = element.findElement(By.cssSelector("td:nth-of-type(2)")).getText();
-            String firstName = element.findElement(By.cssSelector("td:nth-of-type(3)")).getText();
-            int id = Integer.parseInt(element.findElement(By.cssSelector("#maintable>tbody>tr[name='entry']>td>input")).getAttribute("id"));
-            cashedContacts.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName));
+        List<WebElement> rows = wd.findElements(By.name("entry"));
+
+        for (WebElement row : rows){
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            int id = Integer.parseInt(cells.get(0).findElement(By.name("selected[]")).getAttribute("id"));
+            String firstName = cells.get(2).getText();
+            String lastName = cells.get(1).getText();
+            String address = cells.get(3).getText();
+            String[] emails = cells.get(4).getText().split("\n");
+            String[] phones = cells.get(5).getText().split("\n");
+            cashedContacts.add(new ContactData()
+                    .withId(id).withFirstName(firstName).withLastName(lastName).withAddress(address)
+                    .withEmail(emails[0])
+                    .withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]));
         }
         return new Contacts(cashedContacts);
     }
