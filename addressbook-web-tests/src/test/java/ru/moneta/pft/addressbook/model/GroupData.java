@@ -34,11 +34,6 @@ public class GroupData {
         return this;
     }
 
-    public GroupData withFooter(String footer) {
-        this.footer = footer;
-        return this;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -52,6 +47,12 @@ public class GroupData {
     public int hashCode() {
 
         return Objects.hash(getId(), getName());
+    }
+
+    public GroupData withFooter(String footer) {
+        this.footer = footer;
+        return this;
+
     }
 
     @Override
