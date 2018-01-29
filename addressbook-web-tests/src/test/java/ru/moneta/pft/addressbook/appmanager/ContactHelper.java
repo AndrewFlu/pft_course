@@ -9,7 +9,6 @@ import ru.moneta.pft.addressbook.model.ContactData;
 import ru.moneta.pft.addressbook.model.Contacts;
 import ru.moneta.pft.addressbook.model.GroupData;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ContactHelper extends HelperBase{
@@ -35,7 +34,10 @@ public class ContactHelper extends HelperBase{
         type(By.name("lastname"), contactData.getLastName());
         type(By.name("nickname"), contactData.getNickName());
         type(By.name("company"), contactData.getCompany());
+        type(By.name("address"), contactData.getAddress());
+        type(By.name("home"), contactData.getHomePhone());
         type(By.name("mobile"), contactData.getMobilePhone());
+        type(By.name("work"), contactData.getWorkPhone());
         type(By.name("email"), contactData.getEmail());
 
 
@@ -92,13 +94,13 @@ public class ContactHelper extends HelperBase{
     }
 
     private void initContactModificationById(int id) {
-        WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[id='%s']", id)));
-        WebElement tableRow = checkbox.findElement(By.xpath("./../.."));
-        List<WebElement> cells = tableRow.findElements(By.tagName("td"));
-        cells.get(7).findElement(By.tagName("a")).click();
+//        WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[id='%s']", id)));
+//        WebElement tableRow = checkbox.findElement(By.xpath("./../.."));
+//        List<WebElement> cells = tableRow.findElements(By.tagName("td"));
+//        cells.get(7).findElement(By.tagName("a")).click();
 
 //        wd.findElement(By.xpath("//tbody/tr/td/input[@id='" + id + "']/../../td[8]")).click();
-//        wd.findElement(By.xpath(String.format("//input[@id='%s']/../../td[8]/a", id))).click();
+          wd.findElement(By.xpath(String.format("//input[@id='%s']/../../td[8]/a", id))).click();
 //        wd.findElement(By.xpath(String.format("//tr[.//input[@id='%s']]/td[8]/a", id))).click();
 //        wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
     }
@@ -163,11 +165,11 @@ public class ContactHelper extends HelperBase{
             String lastName = cells.get(1).getText();
             String address = cells.get(3).getText();
             String[] emails = cells.get(4).getText().split("\n");
-            String[] phones = cells.get(5).getText().split("\n");
+            String phones = cells.get(5).getText();
             cashedContacts.add(new ContactData()
                     .withId(id).withFirstName(firstName).withLastName(lastName).withAddress(address)
                     .withEmail(emails[0])
-                    .withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]));
+                    .withAllPhones(phones));
         }
         return new Contacts(cashedContacts);
     }
