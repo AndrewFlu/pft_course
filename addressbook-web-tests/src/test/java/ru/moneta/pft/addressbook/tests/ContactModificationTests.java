@@ -4,8 +4,9 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.moneta.pft.addressbook.model.ContactData;
-
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+>>>>>>> newBranch
 
 public class ContactModificationTests extends TestBase {
 
@@ -13,7 +14,7 @@ public class ContactModificationTests extends TestBase {
     public void ensurePreconditions(){
         app.goTo().ContactPage();
         if (app.contact().all().size() == 0){
-            app.contact().createContact(new ContactData()
+            app.contact().create(new ContactData()
                     .withFirstName("FirstName0").withMiddleName("MiddleName0").withLastName("LastName0").withNickName("NickName0")
                     .withCompany("Company0").withMobilePhone("+79111555000").withEmail("test0@yandex.ru").withGroup("group0"));
         }
@@ -28,10 +29,8 @@ public class ContactModificationTests extends TestBase {
                 .withLastName("ModLastName2").withNickName("ModNickName2").withCompany("ModCompany2")
                 .withMobilePhone("+79111555555").withEmail("test5@yandex.ru").withGroup("group5");
         app.contact().modify(contact);
-        Set<ContactData> after = app.contact().all();
-
-        before.remove(modifiedContact);
-        before.add(contact);
-        Assert.assertEquals(after, before);
+        assertThat(app.contact().count(), equalTo(before.size()));
+        Contacts after = app.contact().all();
+        assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
     }
 }
