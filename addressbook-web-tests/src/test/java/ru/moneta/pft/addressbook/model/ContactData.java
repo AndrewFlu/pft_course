@@ -1,12 +1,12 @@
 package ru.moneta.pft.addressbook.model;
 
 import com.google.gson.annotations.Expose;
-import com.sun.tracing.dtrace.NameAttributes;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 import java.io.File;
 import java.util.Objects;
+
 @XStreamAlias("contact")
 public class ContactData {
 
