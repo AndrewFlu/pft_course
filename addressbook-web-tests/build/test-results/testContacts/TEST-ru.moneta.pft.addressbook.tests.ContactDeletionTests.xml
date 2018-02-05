@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.moneta.pft.addressbook.tests.ContactDeletionTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-02-05T11:56:34" hostname="DESKTOP-H8N3ONL" time="3.968">
+  <properties/>
+  <testcase name="testContactDeletion" classname="ru.moneta.pft.addressbook.tests.ContactDeletionTests" time="3.968"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
