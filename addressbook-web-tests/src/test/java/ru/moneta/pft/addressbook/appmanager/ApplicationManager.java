@@ -33,7 +33,7 @@ public class ApplicationManager {
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
         if (browser.equals(BrowserType.FIREFOX)){
-            wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true).setBinary("C://Program Files/Mozilla Firefox 53.2 ESR/firefox.exe"));
+            wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true).setBinary(properties.getProperty("browser.firefox")));
             wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         } else if(browser.equals(BrowserType.GOOGLECHROME)){
             wd = new ChromeDriver();
