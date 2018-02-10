@@ -30,6 +30,23 @@ public class GroupData {
     @Type(type = "text")
     private String header;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GroupData groupData = (GroupData) o;
+        return getId() == groupData.getId() &&
+                Objects.equals(getName(), groupData.getName()) &&
+                Objects.equals(getHeader(), groupData.getHeader()) &&
+                Objects.equals(getFooter(), groupData.getFooter());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getId(), getName(), getHeader(), getFooter());
+    }
+
     @Expose
     @Column(name = "group_footer")
     @Type(type = "text")
@@ -72,21 +89,6 @@ public class GroupData {
                 ", header='" + header + '\'' +
                 ", footer='" + footer + '\'' +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        GroupData groupData = (GroupData) o;
-        return getId() == groupData.getId() &&
-                Objects.equals(getName(), groupData.getName());
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(getId(), getName());
     }
 
 }
