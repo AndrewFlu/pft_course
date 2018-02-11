@@ -120,38 +120,11 @@ public class ContactData {
     public String getAllEmails() { return allEmails; }
     public String getGroup() { return group; }
     public int getId() { return id; }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ContactData that = (ContactData) o;
-        return getId() == that.getId() &&
-                Objects.equals(getFirstName(), that.getFirstName()) &&
-                Objects.equals(getMiddleName(), that.getMiddleName()) &&
-                Objects.equals(getLastName(), that.getLastName()) &&
-                Objects.equals(getNickName(), that.getNickName()) &&
-                Objects.equals(getCompany(), that.getCompany()) &&
-                Objects.equals(getAddress(), that.getAddress()) &&
-                Objects.equals(getAddress2(), that.getAddress2()) &&
-                Objects.equals(getAllAddresses(), that.getAllAddresses()) &&
-                Objects.equals(getHomePhone(), that.getHomePhone()) &&
-                Objects.equals(getMobilePhone(), that.getMobilePhone()) &&
-                Objects.equals(getWorkPhone(), that.getWorkPhone()) &&
-                Objects.equals(getEmail(), that.getEmail()) &&
-                Objects.equals(getEmail2(), that.getEmail2()) &&
-                Objects.equals(getEmail3(), that.getEmail3()) &&
-                Objects.equals(getGroup(), that.getGroup());
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(getId(), getFirstName(), getMiddleName(), getLastName(), getNickName(), getCompany(), getAddress(), getAddress2(), getAllAddresses(), getHomePhone(), getMobilePhone(), getWorkPhone(), getEmail(), getEmail2(), getEmail3(), getGroup());
-    }
-
     public File getPhoto() {
-        return new File(photo);
+        if (photo != null){
+            return new File(photo);
+        }
+        return null;
     }
 
     //setters
@@ -244,8 +217,41 @@ public class ContactData {
     }
 
     public ContactData withPhoto(File photo) {
-        this.photo = photo.getAbsolutePath();
+        if (photo != null) {
+            this.photo = photo.getAbsolutePath();
+        } else {
+            this.photo = "";
+        }
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ContactData that = (ContactData) o;
+        return getId() == that.getId() &&
+                Objects.equals(getFirstName(), that.getFirstName()) &&
+                Objects.equals(getMiddleName(), that.getMiddleName()) &&
+                Objects.equals(getLastName(), that.getLastName()) &&
+                Objects.equals(getNickName(), that.getNickName()) &&
+                Objects.equals(getCompany(), that.getCompany()) &&
+                Objects.equals(getAddress(), that.getAddress()) &&
+                Objects.equals(getAddress2(), that.getAddress2()) &&
+                Objects.equals(getAllAddresses(), that.getAllAddresses()) &&
+                Objects.equals(getHomePhone(), that.getHomePhone()) &&
+                Objects.equals(getMobilePhone(), that.getMobilePhone()) &&
+                Objects.equals(getWorkPhone(), that.getWorkPhone()) &&
+                Objects.equals(getEmail(), that.getEmail()) &&
+                Objects.equals(getEmail2(), that.getEmail2()) &&
+                Objects.equals(getEmail3(), that.getEmail3()) &&
+                Objects.equals(getGroup(), that.getGroup());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getId(), getFirstName(), getMiddleName(), getLastName(), getNickName(), getCompany(), getAddress(), getAddress2(), getAllAddresses(), getHomePhone(), getMobilePhone(), getWorkPhone(), getEmail(), getEmail2(), getEmail3(), getGroup());
     }
 
     @Override
