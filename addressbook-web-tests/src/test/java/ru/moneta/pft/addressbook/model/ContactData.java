@@ -226,39 +226,34 @@ public class ContactData {
     }
 
     @Override
-    public String toString() {
-        return "ContactData{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ContactData that = (ContactData) o;
-        return getId() == that.getId() &&
-                Objects.equals(getFirstName(), that.getFirstName()) &&
-                Objects.equals(getMiddleName(), that.getMiddleName()) &&
-                Objects.equals(getLastName(), that.getLastName()) &&
-                Objects.equals(getNickName(), that.getNickName()) &&
-                Objects.equals(getCompany(), that.getCompany()) &&
-                Objects.equals(getAddress(), that.getAddress()) &&
-                Objects.equals(getAddress2(), that.getAddress2()) &&
-                Objects.equals(getHomePhone(), that.getHomePhone()) &&
-                Objects.equals(getMobilePhone(), that.getMobilePhone()) &&
-                Objects.equals(getWorkPhone(), that.getWorkPhone()) &&
-                Objects.equals(getEmail(), that.getEmail()) &&
-                Objects.equals(getEmail2(), that.getEmail2()) &&
-                Objects.equals(getEmail3(), that.getEmail3());
+        return id == that.id &&
+                Objects.equals(firstName, that.firstName) &&
+                Objects.equals(middleName, that.middleName) &&
+                Objects.equals(lastName, that.lastName) &&
+                Objects.equals(mobilePhone, that.mobilePhone) &&
+                Objects.equals(email, that.email);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getId(), getFirstName(), getMiddleName(), getLastName(), getNickName(), getCompany(), getAddress(), getAddress2(), getHomePhone(), getMobilePhone(), getWorkPhone(), getEmail(), getEmail2(), getEmail3());
+        return Objects.hash(id, firstName, middleName, lastName, mobilePhone, email);
+    }
+
+    @Override
+    public String toString() {
+        return "ContactData{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", mobilePhone='" + mobilePhone + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 
 }
