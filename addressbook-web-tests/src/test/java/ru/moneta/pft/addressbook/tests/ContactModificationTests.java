@@ -1,5 +1,6 @@
 package ru.moneta.pft.addressbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.moneta.pft.addressbook.model.ContactData;
