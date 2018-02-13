@@ -5,6 +5,9 @@ import org.testng.annotations.Test;
 import ru.moneta.pft.addressbook.model.ContactData;
 import ru.moneta.pft.addressbook.model.Contacts;
 
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertEquals;
@@ -34,7 +37,8 @@ public class ContactModificationTests extends TestBase {
         app.contact().modify(contact);
         assertThat(app.contact().count(), equalTo(before.size()));
         Contacts after = app.db().contacts();
-        assertEquals(after, (before.without(modifiedContact).withAdded(contact)));
-        assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
+        ContactData contactDb = app.db().contactInfoFromDb(contact);
+        assertThat(after, equalTo(before.without(modifiedContact).withAdded(contactDb)));
+        //assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
     }
 }

@@ -1,6 +1,8 @@
 package ru.moneta.pft.addressbook.model;
 
 import com.google.common.collect.ForwardingSet;
+import ru.moneta.pft.addressbook.appmanager.ApplicationManager;
+import ru.moneta.pft.addressbook.tests.TestBase;
 
 import java.util.Collection;
 import java.util.HashSet;
