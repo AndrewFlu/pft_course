@@ -3,10 +3,13 @@ package ru.moneta.pft.addressbook.tests;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.moneta.pft.addressbook.model.ContactData;
 import ru.moneta.pft.addressbook.model.Contacts;
+import ru.moneta.pft.addressbook.model.GroupData;
+import ru.moneta.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -53,11 +56,20 @@ public class ContactCreationTests extends TestBase{
         }
     }
 
+    @BeforeMethod
+    public void ensurePreconditions(){
+        if (app.db().groups().size() == 0){
+            app.goTo().groupPage();
+            app.group().create(new GroupData().withName("NewGroup1").withHeader("NewHeader1").withFooter("NewFooter1"));
+        }
+    }
+
     @Test (dataProvider = "validContactsFromJson")
     public void testContactCreation(ContactData contact) {
+        Groups groups = app.db().groups();
         Contacts before = app.db().contacts();
         File photo = new File("src/test/resources/bandit.jpg");
-        contact.withPhoto(photo);
+        contact.withPhoto(photo).inGroup(groups.iterator().next());
 
         app.goTo().ContactPage();
         app.contact().create(contact);
@@ -65,6 +77,7 @@ public class ContactCreationTests extends TestBase{
         Contacts after = app.db().contacts();
         assertThat(after, equalTo(
                 before.withAdded(contact.withId(after.stream().mapToInt((c)->c.getId()).max().getAsInt()))));
+        verifyContactListInUi();
     }
 }
 

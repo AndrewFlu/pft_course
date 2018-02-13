@@ -53,10 +53,10 @@ public class ContactHelper extends HelperBase{
                 // Если в базе уже заведена как минимум 1 группа -
                 // прогоним список значений селектора на предмет совпадения имени уже имеющейся группы и имени группы самого контакта
                 for (int n=0; n<allGroupsInSelect.length; n++) {
-                    boolean isExactlyGroup = allGroupsInSelect[n].equals(contactData.getGroup());
+                    boolean isExactlyGroup = allGroupsInSelect[n].equals(contactData.getGroups());
                     // и если имена совпадают - выбираем это значение из списка
                     if (isExactlyGroup) {
-                        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+                        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().toString());
                         return;
                     }
                 }
@@ -64,7 +64,7 @@ public class ContactHelper extends HelperBase{
                 //  если же список селектора состоит из одного значения по умолчанию "[none]"
                 // создадим группу. И в качесте имени группы укажем имя группы самого контакта
                 new NavigationHelper(wd).groupPage();
-                new GroupHelper(wd).create(new GroupData().withName(contactData.getGroup()));
+                new GroupHelper(wd).create(new GroupData().withName(contactData.getGroups().toString()));
                 new NavigationHelper(wd).ContactPage();
                 // продолжим сценарий создания контакта
                 new ContactHelper(wd).initContactCreation();
