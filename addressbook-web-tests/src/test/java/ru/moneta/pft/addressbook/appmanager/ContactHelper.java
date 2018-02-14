@@ -45,35 +45,11 @@ public class ContactHelper extends HelperBase{
         attach(By.name("photo"), contactData.getPhoto());
 
 
-        if (creation){        // если создаем контакт
-            // выполним проверку значений в селекторе выбора групп.
-            String[] allGroupsInSelect = getAllValuesInSelect(By.name("new_group"));
-            // проверим список значений в селекторе по длинне.
-            if(allGroupsInSelect.length > 1){
-                // Если в базе уже заведена как минимум 1 группа -
-                // прогоним список значений селектора на предмет совпадения имени уже имеющейся группы и имени группы самого контакта
-                for (int n=0; n<allGroupsInSelect.length; n++) {
-                    boolean isExactlyGroup = allGroupsInSelect[n].equals(contactData.getGroups());
-                    // и если имена совпадают - выбираем это значение из списка
-                    if (isExactlyGroup) {
-                        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().toString());
-                        return;
-                    }
-                }
-            } else{
-                //  если же список селектора состоит из одного значения по умолчанию "[none]"
-                // создадим группу. И в качесте имени группы укажем имя группы самого контакта
-                new NavigationHelper(wd).groupPage();
-                new GroupHelper(wd).create(new GroupData().withName(contactData.getGroups().toString()));
-                new NavigationHelper(wd).ContactPage();
-                // продолжим сценарий создания контакта
-                new ContactHelper(wd).initContactCreation();
-                // вызовем рекурсию, где уже будет выполняться блок if(allGroupsInSelect.length > 1)
-                // контакт создастся, а в качестве группы - будет выбрана вновь созданная группа
-                fillContactForm(contactData, true);
+        if (creation){
+            if (contactData.getGroups().size() > 0){
+                Assert.assertTrue(contactData.getGroups().size() == 1);
+                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
             }
-
-            Assert.assertTrue(isElementPresent(By.name("new_group")));
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
