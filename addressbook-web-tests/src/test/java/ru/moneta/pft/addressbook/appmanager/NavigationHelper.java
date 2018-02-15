@@ -21,6 +21,7 @@ public class NavigationHelper extends HelperBase{
 
     public void ContactPage() {
         if (isElementPresent(By.id("maintable"))){
+            new Select(wd.findElement(By.name("group"))).selectByVisibleText("[all]");
             return;
         }
         click(By.linkText("home"));
