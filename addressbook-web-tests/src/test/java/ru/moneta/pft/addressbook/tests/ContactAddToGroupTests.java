@@ -3,6 +3,7 @@ package ru.moneta.pft.addressbook.tests;
 import com.thoughtworks.xstream.XStream;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.MatcherAssert;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -55,14 +56,24 @@ public class ContactAddToGroupTests extends TestBase {
     @Test
 
     public void testContactAddToGroup(){
-        Contacts before = app.db().contacts();
-        Groups groups = app.db().groups();
-        app.goTo().ContactPage();
-        ContactData contactDb = before.iterator().next();
-        contactDb.inGroup(groups.iterator().next());
 
-        app.contact().addContactToGroup(contactDb);
-        Contacts after = app.db().contactsInChoosenGroup(contactDb.getId());
+        // выбираем объект типа GroupData для дальнейшего использования в тесте
+        // сохраним в переменную before все контакты, находящиеся в выбранной группе до теста
+        Groups groups = app.db().groups();
+        ContactData targetContact = app.db().contacts().iterator().next();
+        GroupData targetGroup = groups.iterator().next();
+        app.contact().goToTargetGroupPage(targetGroup);
+
+        // на этом шаге ошибка: Unknown column 'group_id' in 'where clause'
+        Contacts before = app.db().contactsInChoosenGroup(targetGroup);
+
+        // добавляем контакты в выбранную группу
+        app.goTo().ContactPage();
+        app.contact().addContactToGroup(targetGroup, targetContact);
+
+        // сохраним новый список контактов в переменную after после теста
+        Contacts after = app.db().contactsInChoosenGroup(targetGroup);
+        assertThat(after, equalTo(before.withAdded(targetContact)));
 
 
     }

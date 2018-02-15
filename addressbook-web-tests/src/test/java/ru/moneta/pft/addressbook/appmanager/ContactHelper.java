@@ -8,6 +8,7 @@ import org.testng.Assert;
 import ru.moneta.pft.addressbook.model.ContactData;
 import ru.moneta.pft.addressbook.model.Contacts;
 import ru.moneta.pft.addressbook.model.GroupData;
+import ru.moneta.pft.addressbook.model.Groups;
 
 import java.util.List;
 
@@ -176,28 +177,32 @@ public class ContactHelper extends HelperBase{
                 .withEmail(email).withEmail2(email2).withEmail3(email3);
     }
 
-    public void addContactToGroup(ContactData contact) {
+    public void addContactToGroup(GroupData group, ContactData contact) {
         chooseContact(contact);
-        chooseGroupForContact(contact);
-        addContactToChoosenGroup(contact);
-        goToChoosenGroupPage(contact);
+        chooseGroupForContact(contact, group);
+        addContactToChoosenGroup();
+        goToChoosenGroupPage(group);
     }
 
 
     public void chooseContact(ContactData contact) {
         wd.findElement(By.id(String.valueOf(contact.getId()))).click();
-
     }
 
-    public void chooseGroupForContact(ContactData contact) {
-        new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contact.getGroups().iterator().next().getName());
+    public void chooseGroupForContact(ContactData contact, GroupData group) {
+        new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(group.getName());
     }
 
-    public void addContactToChoosenGroup(ContactData contact) {
+    public void addContactToChoosenGroup() {
         wd.findElement(By.name("add")).click();
     }
 
-    public void goToChoosenGroupPage(ContactData contact) {
-        wd.findElement(By.linkText(String.format("group page \"%s\"", contact.getGroups().iterator().next().getName()))).click();
+    public void goToChoosenGroupPage(GroupData group) {
+        wd.findElement(By.linkText(String.format("group page \"%s\"", group.getName()))).click();
     }
+
+    public void goToTargetGroupPage(GroupData group) {
+        new Select(wd.findElement(By.name("group"))).selectByVisibleText(group.getName());
+    }
+
 }

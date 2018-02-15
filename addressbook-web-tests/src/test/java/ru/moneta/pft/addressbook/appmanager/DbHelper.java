@@ -49,10 +49,10 @@ public class DbHelper {
         return new Contacts(result).iterator().next();
     }
 
-    public Contacts contactsInChoosenGroup(int groupId) {
+    public Contacts contactsInChoosenGroup(GroupData group) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List <ContactData> result = session.createQuery(String.format("from ContactData where group_id = %s", groupId)).list();
+        List <ContactData> result = session.createQuery(String.format("from ContactData where group_id = %s", group.getId())).list();
         session.getTransaction().commit();
         session.close();
 
