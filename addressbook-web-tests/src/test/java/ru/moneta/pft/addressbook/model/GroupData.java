@@ -29,7 +29,7 @@ public class GroupData {
     @Type(type = "text")
     private String header;
 
-    @ManyToMany(mappedBy = "groups")
+    @ManyToMany(mappedBy = "groups", fetch = FetchType.EAGER)
     private Set<ContactData> contacts = new HashSet<ContactData>();
 
     @Expose
@@ -45,6 +45,9 @@ public class GroupData {
     public String getHeader() { return header; }
 
     public String getFooter() { return footer; }
+    public Contacts getContacts() {
+        return new Contacts (contacts);
+    }
 
     //setters
     public GroupData withId(int id) {
@@ -67,9 +70,7 @@ public class GroupData {
         return this;
     }
 
-    public Contacts getContacts() {
-        return new Contacts (contacts);
-    }
+
 
     @Override
     public String toString() {

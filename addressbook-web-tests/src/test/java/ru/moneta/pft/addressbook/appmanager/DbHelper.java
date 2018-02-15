@@ -48,4 +48,15 @@ public class DbHelper {
         session.close();
         return new Contacts(result).iterator().next();
     }
+
+    public Contacts contactsInChoosenGroup(int groupId) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        List <ContactData> result = session.createQuery(String.format("from ContactData where group_id = %s", groupId)).list();
+        session.getTransaction().commit();
+        session.close();
+
+        return new Contacts(result);
+
+    }
 }

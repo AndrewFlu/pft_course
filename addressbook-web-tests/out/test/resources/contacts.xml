@@ -3,70 +3,80 @@
     <firstName>Name 0</firstName>
     <middleName>MiddleName 0</middleName>
     <lastName>LastName 0</lastName>
+    <nickName>NickName0</nickName>
     <company>Company 0</company>
     <address>Russia, Petrova 0</address>
     <address2>secondAddress 0</address2>
     <homePhone>+79015050400</homePhone>
     <mobilePhone>89112225500</mobilePhone>
     <workPhone>55-77-50</workPhone>
-    <email>firstemail0@yahoo.com</email>
-    <email2>secondemail0@gmail.com</email2>
+    <email>first.email0@yahoo.com</email>
+    <email2>second.email0@gmail.com</email2>
     <email3>0@mail.ru</email3>
+    <groups/>
   </contact>
   <contact>
     <firstName>Name 1</firstName>
     <middleName>MiddleName 1</middleName>
     <lastName>LastName 1</lastName>
+    <nickName>NickName1</nickName>
     <company>Company 1</company>
     <address>Russia, Petrova 1</address>
     <address2>secondAddress 1</address2>
     <homePhone>+79015050401</homePhone>
     <mobilePhone>89112225501</mobilePhone>
     <workPhone>55-77-51</workPhone>
-    <email>firstemail1@yahoo.com</email>
-    <email2>secondemail1@gmail.com</email2>
+    <email>first.email1@yahoo.com</email>
+    <email2>second.email1@gmail.com</email2>
     <email3>1@mail.ru</email3>
+    <groups/>
   </contact>
   <contact>
     <firstName>Name 2</firstName>
     <middleName>MiddleName 2</middleName>
     <lastName>LastName 2</lastName>
+    <nickName>NickName2</nickName>
     <company>Company 2</company>
     <address>Russia, Petrova 2</address>
     <address2>secondAddress 2</address2>
     <homePhone>+79015050402</homePhone>
     <mobilePhone>89112225502</mobilePhone>
     <workPhone>55-77-52</workPhone>
-    <email>firstemail2@yahoo.com</email>
-    <email2>secondemail2@gmail.com</email2>
+    <email>first.email2@yahoo.com</email>
+    <email2>second.email2@gmail.com</email2>
     <email3>2@mail.ru</email3>
+    <groups/>
   </contact>
   <contact>
     <firstName>Name 3</firstName>
     <middleName>MiddleName 3</middleName>
     <lastName>LastName 3</lastName>
+    <nickName>NickName3</nickName>
     <company>Company 3</company>
     <address>Russia, Petrova 3</address>
     <address2>secondAddress 3</address2>
     <homePhone>+79015050403</homePhone>
     <mobilePhone>89112225503</mobilePhone>
     <workPhone>55-77-53</workPhone>
-    <email>firstemail3@yahoo.com</email>
-    <email2>secondemail3@gmail.com</email2>
+    <email>first.email3@yahoo.com</email>
+    <email2>second.email3@gmail.com</email2>
     <email3>3@mail.ru</email3>
+    <groups/>
   </contact>
   <contact>
     <firstName>Name 4</firstName>
     <middleName>MiddleName 4</middleName>
     <lastName>LastName 4</lastName>
+    <nickName>NickName4</nickName>
     <company>Company 4</company>
     <address>Russia, Petrova 4</address>
     <address2>secondAddress 4</address2>
     <homePhone>+79015050404</homePhone>
     <mobilePhone>89112225504</mobilePhone>
     <workPhone>55-77-54</workPhone>
-    <email>firstemail4@yahoo.com</email>
-    <email2>secondemail4@gmail.com</email2>
+    <email>first.email4@yahoo.com</email>
+    <email2>second.email4@gmail.com</email2>
     <email3>4@mail.ru</email3>
+    <groups/>
   </contact>
 </list>

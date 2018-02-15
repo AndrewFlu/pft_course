@@ -11,6 +11,7 @@ import ru.moneta.pft.addressbook.model.ContactData;
 import ru.moneta.pft.addressbook.model.GroupData;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class HbConnectionTest {
 
@@ -59,4 +60,17 @@ public class HbConnectionTest {
         }
     }
 
+    @Test // Contact's table connection
+    public void testContactsManyToManyHbConnection(){
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        List<GroupData> result = session.createQuery("from GroupData where group_id = 350").list();
+        session.getTransaction().commit();
+        session.close();
+
+        for (GroupData group : result){
+            //System.out.println(group);
+            System.out.println(group.getContacts());
+        }
+    }
 }

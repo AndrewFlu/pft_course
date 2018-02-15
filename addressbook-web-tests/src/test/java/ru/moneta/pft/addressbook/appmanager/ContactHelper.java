@@ -175,4 +175,29 @@ public class ContactHelper extends HelperBase{
                 .withHomePhone(homePhone).withMobilePhone(mobilePhone).withWorkPhone(workPhone)
                 .withEmail(email).withEmail2(email2).withEmail3(email3);
     }
+
+    public void addContactToGroup(ContactData contact) {
+        chooseContact(contact);
+        chooseGroupForContact(contact);
+        addContactToChoosenGroup(contact);
+        goToChoosenGroupPage(contact);
+    }
+
+
+    public void chooseContact(ContactData contact) {
+        wd.findElement(By.id(String.valueOf(contact.getId()))).click();
+
+    }
+
+    public void chooseGroupForContact(ContactData contact) {
+        new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contact.getGroups().iterator().next().getName());
+    }
+
+    public void addContactToChoosenGroup(ContactData contact) {
+        wd.findElement(By.name("add")).click();
+    }
+
+    public void goToChoosenGroupPage(ContactData contact) {
+        wd.findElement(By.linkText(String.format("group page \"%s\"", contact.getGroups().iterator().next().getName()))).click();
+    }
 }
