@@ -52,7 +52,7 @@ public class DbHelper {
     public Contacts contactsInChoosenGroup(GroupData group) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List <ContactData> result = session.createQuery(String.format("from ContactData where group_id = %s", group.getId())).list();
+        List <ContactData> result = session.createQuery(String.format("from GroupData where group_id = %s", group.getId())).list();
         session.getTransaction().commit();
         session.close();
 

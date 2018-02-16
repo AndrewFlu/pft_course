@@ -7,6 +7,8 @@ import ru.moneta.pft.addressbook.model.Contacts;
 import ru.moneta.pft.addressbook.model.GroupData;
 import ru.moneta.pft.addressbook.model.Groups;
 
+import java.util.Iterator;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -37,20 +39,20 @@ public class ContactAddToGroupTests extends TestBase {
         ContactData targetContact = contacts.iterator().next();
         GroupData targetGroup = groups.iterator().next();
 
-        for (int i = 0; i < contacts.size(); i++){
-            if (targetContact.getGroups().equals(groups)){
-                targetContact = contacts.iterator().next();
-            } else {
-                break;
-            }
-        }
+        Iterator<ContactData> iter = contacts.iterator();
 
-        if (targetContact.getGroups().equals(groups)){
-            app.goTo().groupPage();
-            targetGroup = new GroupData().withName("NewGroup1");
-            app.group().create(targetGroup);
-            targetContact.inGroup(targetGroup);
-        }
+        for (int i=0; i< contacts.size(); i++){
+            Iterator<ContactData> testContact = iter;
+            if (! testContact.next().getGroups().equals(groups)){
+                break;
+            } else {
+                continue;
+            }
+            }
+
+
+
+
 
         app.goTo().ContactPage();
       //  app.contact().goToTargetGroupPage(targetGroup);
