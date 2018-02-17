@@ -31,7 +31,6 @@ public class ContactAddToGroupTests extends TestBase {
     }
 
     @Test
-
     public void testContactAddToGroup() {
         Object [] testData = checkProperPreconditions();
         ContactData testContact = (ContactData) testData[0];
@@ -52,9 +51,10 @@ public class ContactAddToGroupTests extends TestBase {
         Contacts contacts = app.db().contacts();
         GroupData testGroup = groups.iterator().next();
         Iterator<ContactData> iterContact = contacts.iterator();
-        ContactData testContact = iterContact.next();
+        ContactData testContact = new ContactData();
 
         while (iterContact.hasNext()) {
+            testContact = iterContact.next();
             for (ContactData c : contacts) {
                 if (! iterContact.hasNext() || c.getGroups().equals(groups)) {
                     if (! iterContact.hasNext()) {

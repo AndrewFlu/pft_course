@@ -1,17 +1,18 @@
 package ru.moneta.pft.addressbook.tests;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.moneta.pft.addressbook.model.ContactData;
 import ru.moneta.pft.addressbook.model.Contacts;
 import ru.moneta.pft.addressbook.model.GroupData;
+import ru.moneta.pft.addressbook.model.Groups;
+
+import java.util.Iterator;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ContactRemoveGroupTest extends TestBase {
+public class ContactRemoveFromGroupTest extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions(){
@@ -28,8 +29,9 @@ public class ContactRemoveGroupTest extends TestBase {
 
     @Test
     public void testContactRemovingFromGroup(){
-        GroupData targetGroup = app.db().groups().iterator().next();
-        ContactData targetContact = app.db().contacts().iterator().next();
+        Object [] testData = checkProperPreconditions();
+        GroupData targetGroup = (GroupData) testData[1];
+        ContactData targetContact = (ContactData) testData[0];
         app.contact().goToTargetGroupPage(targetGroup);
         Contacts before = targetGroup.getContacts();
         app.contact().chooseContact(targetContact);
@@ -39,5 +41,32 @@ public class ContactRemoveGroupTest extends TestBase {
         assertThat(after, equalTo(before.without(targetContact)));
     }
 
+
+
+    public Object [] checkProperPreconditions() {
+        Groups groups = app.db().groups();
+        Contacts contacts = app.db().contacts();
+        GroupData testGroup = groups.iterator().next();
+        Iterator<ContactData> iterContact = contacts.iterator();
+        ContactData testContact = new ContactData();
+        app.goTo().ContactPage();
+
+        while (iterContact.hasNext()) {
+            testContact = iterContact.next();
+            for (ContactData c : contacts) {
+                if (c.getGroups().size() > 0) {
+                    testContact = c;
+                    testGroup = testContact.getGroups().iterator().next();
+                } else if (c.getGroups().size() == 0){
+                    app.contact().addContactToGroup(testGroup, testContact);
+                } else {
+                    continue;
+                }
+                break;
+            }
+            break;
+        }
+        return new Object[]{testContact, testGroup};
+    }
 
 }

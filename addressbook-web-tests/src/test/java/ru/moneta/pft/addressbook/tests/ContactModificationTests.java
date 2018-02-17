@@ -5,12 +5,8 @@ import org.testng.annotations.Test;
 import ru.moneta.pft.addressbook.model.ContactData;
 import ru.moneta.pft.addressbook.model.Contacts;
 
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.assertEquals;
 
 public class ContactModificationTests extends TestBase {
 
