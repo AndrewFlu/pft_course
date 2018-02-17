@@ -49,14 +49,12 @@ public class DbHelper {
         return new Contacts(result).iterator().next();
     }
 
-    public Contacts contactsInChoosenGroup(GroupData group) {
+    public GroupData getGroupById(int id) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List <ContactData> result = session.createQuery(String.format("from GroupData where group_id = %s", group.getId())).list();
+        List <GroupData> result = session.createQuery(String.format("from GroupData where group_id = %s", id)).list();
         session.getTransaction().commit();
         session.close();
-
-        return new Contacts(result);
-
+        return result.get(0);
     }
 }

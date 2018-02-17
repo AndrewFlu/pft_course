@@ -8,7 +8,6 @@ import org.testng.Assert;
 import ru.moneta.pft.addressbook.model.ContactData;
 import ru.moneta.pft.addressbook.model.Contacts;
 import ru.moneta.pft.addressbook.model.GroupData;
-import ru.moneta.pft.addressbook.model.Groups;
 
 import java.util.List;
 
@@ -205,4 +204,8 @@ public class ContactHelper extends HelperBase{
         new Select(wd.findElement(By.name("group"))).selectByVisibleText(group.getName());
     }
 
+
+    public void removeContactFromGroup() {
+        wd.findElement(By.name("remove")).click();
+    }
 }

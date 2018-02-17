@@ -11,7 +11,6 @@ import ru.moneta.pft.addressbook.model.ContactData;
 import ru.moneta.pft.addressbook.model.GroupData;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class HbConnectionTest {
 
@@ -69,7 +68,6 @@ public class HbConnectionTest {
         session.close();
 
         for (GroupData group : result){
-            //System.out.println(group);
             System.out.println(group.getContacts());
         }
     }

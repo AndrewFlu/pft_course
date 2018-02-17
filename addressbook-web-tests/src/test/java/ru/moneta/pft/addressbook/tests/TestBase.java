@@ -65,4 +65,8 @@ public class TestBase {
         }
     }
 
+    public Contacts getNewContactsInTargetGroup(GroupData targetGroup) {
+        GroupData g = app.db().getGroupById(targetGroup.getId());
+        return g.getContacts();
+    }
 }
