@@ -19,7 +19,7 @@ public class FtpHelper {
 
     // methods
     public void upload(File file, String target, String backUp) throws IOException {
-        ftp.connect("ftp.host");
+        ftp.connect(app.getProperty("ftp.host"));
         ftp.login(app.getProperty("ftp.login"), app.getProperty("ftp.password"));
         ftp.deleteFile(backUp);
         ftp.rename(target, backUp);
