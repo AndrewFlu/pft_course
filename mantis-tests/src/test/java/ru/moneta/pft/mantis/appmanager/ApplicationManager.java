@@ -20,6 +20,7 @@ public class ApplicationManager {
     private String browser;
     private WebDriver wd;
     private RegistrationHelper registrationHelper;
+    private FtpHelper ftp;
 
     // constructor
     public ApplicationManager(String browser){
@@ -39,21 +40,6 @@ public class ApplicationManager {
         }
     }
 
-    public HttpSession newSession(){
-        return new HttpSession(this);
-    }
-
-    public String getProperty(String key) {
-        return properties.getProperty(key);
-    }
-
-    public RegistrationHelper registration() {
-        if (registrationHelper == null){
-            registrationHelper = new RegistrationHelper(this);
-        }
-        return registrationHelper;
-    }
-
     public WebDriver getDriver() {
         if (wd == null){
             if (browser.equals(BrowserType.FIREFOX)){
@@ -70,4 +56,29 @@ public class ApplicationManager {
         }
         return wd;
     }
+
+    public String getProperty(String key) {
+        return properties.getProperty(key);
+    }
+
+    // helpers
+    public HttpSession newSession(){
+        return new HttpSession(this);
+    }
+
+    public RegistrationHelper registration() {
+        if (registrationHelper == null){
+            registrationHelper = new RegistrationHelper(this);
+        }
+        return registrationHelper;
+    }
+
+    public FtpHelper ftp(){
+        if (ftp == null){
+            ftp = new FtpHelper(this);
+        }
+        return ftp;
+    }
+
+
 }
