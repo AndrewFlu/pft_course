@@ -1,7 +1,31 @@
 <?php
+
+# !!! custom settings
+
 $g_signup_use_captcha	= OFF;
 
+/**
+ * select the method to mail by:
+ * PHPMAILER_METHOD_MAIL - mail()
+ * PHPMAILER_METHOD_SENDMAIL - sendmail
+ * PHPMAILER_METHOD_SMTP - SMTP
+ * @global integer $g_phpMailer_method
+ */
+$g_phpMailer_method = PHPMAILER_METHOD_SMTP;
 
+/**
+ * Remote SMTP Host(s)
+ * Either a single hostname or multiple semicolon-delimited hostnames.
+ * You can specify for each host a port other than the default, using format:
+ * [hostname:port] (e.g. "smtp1.example.com:25;smtp2.example.com").
+ * Hosts will be tried in the given order.
+ * NOTE: This is only used with PHPMAILER_METHOD_SMTP.
+ * @see $g_smtp_port
+ * @global string $g_smtp_host
+ */
+$g_smtp_host = 'localhost';
+
+# !!! default settings
 
 # MantisBT - A PHP based bugtracking system
 
@@ -631,26 +655,9 @@ $g_show_user_email_threshold = NOBODY;
  */
 $g_show_user_realname_threshold = NOBODY;
 
-/**
- * select the method to mail by:
- * PHPMAILER_METHOD_MAIL - mail()
- * PHPMAILER_METHOD_SENDMAIL - sendmail
- * PHPMAILER_METHOD_SMTP - SMTP
- * @global integer $g_phpMailer_method
- */
-$g_phpMailer_method = PHPMAILER_METHOD_MAIL;
 
-/**
- * Remote SMTP Host(s)
- * Either a single hostname or multiple semicolon-delimited hostnames.
- * You can specify for each host a port other than the default, using format:
- * [hostname:port] (e.g. "smtp1.example.com:25;smtp2.example.com").
- * Hosts will be tried in the given order.
- * NOTE: This is only used with PHPMAILER_METHOD_SMTP.
- * @see $g_smtp_port
- * @global string $g_smtp_host
- */
-$g_smtp_host = 'localhost';
+
+
 
 /**
  * SMTP Server Authentication user

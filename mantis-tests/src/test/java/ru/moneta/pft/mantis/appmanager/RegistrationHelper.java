@@ -1,20 +1,21 @@
 package ru.moneta.pft.mantis.appmanager;
 
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By;
 
-public class RegistrationHelper {
+public class RegistrationHelper extends HelperBase {
+
     // fields
-    private final ApplicationManager app;
-    private WebDriver driver;
 
     // constructor
     public RegistrationHelper(ApplicationManager app) {
-        this.app = app;
-        driver = app.getDriver();
+        super (app);
     }
 
     // methods
     public void start(String userName, String email) {
-        driver.get(app.getProperty("web.baseUrl") + "signup_page.php");
+        app.getDriver().get(app.getProperty("web.baseUrl") + "signup_page.php");
+        type(By.name("username"), userName);
+        type(By.name("email"), email);
+        click(By.cssSelector("input[type='submit']"));
     }
 }
