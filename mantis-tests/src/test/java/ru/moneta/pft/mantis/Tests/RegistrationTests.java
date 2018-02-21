@@ -24,7 +24,7 @@ public class RegistrationTests extends TestBase {
         long now = System.currentTimeMillis();
         String user = String.format("user%s", now);
         String password = "password";
-        String email = String.format("user%s@localhost.localdomain", now);
+        String email = String.format("user%s@localhost", now);
 
         // создаем пользователя на сервере James
         app.james().createUser(user, password);
