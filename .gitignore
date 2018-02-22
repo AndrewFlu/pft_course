@@ -16,3 +16,4 @@ gradle-app.setting
 sandbox/out/production/classes/ru/moneta/pft/sandbox/FirstProgram.class
 *.class
 *.log
+.idea/vcs.xml

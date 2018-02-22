@@ -22,7 +22,7 @@ public class DbHelper {
     }
 
 
-    public Users contacts(){
+    public Users users(){
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         List<UserData> result = session.createQuery("from UserData where enabled = '1'").list();

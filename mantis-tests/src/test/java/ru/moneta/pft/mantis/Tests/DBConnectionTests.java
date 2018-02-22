@@ -14,12 +14,13 @@ public class DBConnectionTests {
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost/bugtracker?user=root&password=");
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("select id, username, enabled from mantis_user_table");
+            ResultSet rs = st.executeQuery("select id, username, email, access_level, enabled from mantis_user_table");
             Users users =  new Users();
-//            while (rs.next()){
-//                users.add(new UserData().withId(rs.getInt("group_id")).withName(rs.getString("group_name"))
-//                        .withHeader(rs.getString("group_header")).withFooter(rs.getString("group_footer")));
-//            }
+            while (rs.next()){
+                users.add(new UserData().withId(rs.getInt("id")).withUserName(rs.getString("username"))
+                        .withEmail(rs.getString("email"))
+                        .withAccessLevel(rs.getInt("access_level")).withEnabledStatus(rs.getInt("enabled")));
+           }
             rs.close();
             st.close();
             conn.close();

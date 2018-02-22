@@ -1,6 +1,7 @@
 package ru.moneta.pft.mantis.Tests;
 
 import org.testng.annotations.Test;
+import ru.moneta.pft.mantis.model.Users;
 
 public class ChangePasswordTests extends TestBase {
 
@@ -20,7 +21,8 @@ public class ChangePasswordTests extends TestBase {
         app.user().signIn(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"));
 
         // find user
-
+        Users users = app.db().users();
+        System.out.println(users);
 
         System.out.println("Successful login as admin");
 

@@ -26,15 +26,4 @@ public class Users extends ForwardingSet<UserData> {
         return delegateObject;
     }
 
-//    public Users withAdded(UserData group){
-//        Users users = new Users(this);
-//        users.add(group);
-//        return groups;
-//    }
-//
-//    public Groups without(GroupData group){
-//        Groups groups = new Groups(this);
-//        groups.remove(group);
-//        return groups;
-//    }
 }

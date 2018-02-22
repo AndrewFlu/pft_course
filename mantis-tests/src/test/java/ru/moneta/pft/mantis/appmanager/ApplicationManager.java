@@ -25,17 +25,20 @@ public class ApplicationManager {
     private JamesHelper jamesHelper;
     private NavigationHelper navigationHelper;
     private UserHelper userHelper;
+    private DbHelper dbhelper;
 
     // constructor
     public ApplicationManager(String browser){
         this.browser = browser;
         properties = new Properties();
+
     }
 
     // methods
     public void init() throws IOException {
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+        dbhelper = new DbHelper();
     }
 
     public void stop() {
@@ -110,5 +113,12 @@ public class ApplicationManager {
             userHelper = new UserHelper(this);
         }
         return userHelper;
+    }
+
+    public DbHelper db() {
+        if (dbhelper == null){
+            dbhelper = new DbHelper();
+        }
+        return dbhelper;
     }
 }

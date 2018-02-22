@@ -4,9 +4,9 @@
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="createEmptyContentRootDirectories" value="true" />
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/addressbook-web-tests" />
-        <option name="gradleHome" value="C:/automation_testing/tools/gradle-4.4.1" />
+        <option name="gradleHome" value="/Applications/automation_util/gradle-4.5.1" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/addressbook-web-tests" />
