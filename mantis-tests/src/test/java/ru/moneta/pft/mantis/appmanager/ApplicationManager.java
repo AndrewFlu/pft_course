@@ -23,6 +23,8 @@ public class ApplicationManager {
     private FtpHelper ftp;
     private MailHelper mailHelper;
     private JamesHelper jamesHelper;
+    private NavigationHelper navigationHelper;
+    private UserHelper userHelper;
 
     // constructor
     public ApplicationManager(String browser){
@@ -96,4 +98,17 @@ public class ApplicationManager {
         return jamesHelper;
     }
 
+    public NavigationHelper goTo() {
+        if (navigationHelper == null){
+            navigationHelper = new NavigationHelper(this);
+        }
+        return navigationHelper;
+    }
+
+    public UserHelper user() {
+        if (userHelper == null){
+            userHelper = new UserHelper(this);
+        }
+        return userHelper;
+    }
 }
