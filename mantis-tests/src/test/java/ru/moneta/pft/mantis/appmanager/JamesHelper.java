@@ -1,6 +1,7 @@
 package ru.moneta.pft.mantis.appmanager;
 
 import org.apache.commons.net.telnet.TelnetClient;
+import ru.lanwen.verbalregex.VerbalExpression;
 import ru.moneta.pft.mantis.model.MailMessage;
 
 import javax.mail.*;
@@ -69,7 +70,7 @@ public class JamesHelper {
     // end of operations with user accounts
 
 
-    private void initTelnetSession() {
+    public void initTelnetSession() {
         mailServer = app.getProperty("mailserver.host");
         int port = Integer.parseInt(app.getProperty("mailserver.port"));
         String adminLogin = app.getProperty("mailserver.adminlogin");
@@ -139,7 +140,7 @@ public class JamesHelper {
 
 
     public List<MailMessage> waitForMail(String userName, String password, int timeout) throws MessagingException {
-       long start = System.currentTimeMillis();
+        long start = System.currentTimeMillis();
         while (System.currentTimeMillis() < start + timeout){
             List<MailMessage> allMail = getAllMail(userName, password);
             if (allMail.size() > 0){
@@ -154,10 +155,9 @@ public class JamesHelper {
         throw new Error("There are no mail!");
     }
 
+
     public List<MailMessage> getAllMail(String userName, String password) throws MessagingException {
         Folder inbox = openInbox(userName, password);
-        Message[] messages1 = inbox.getMessages();
-        System.out.println(messages1.toString());
         List<MailMessage> messages = Arrays.asList(inbox.getMessages()).stream().map((m) -> toModelMail(m)).collect(Collectors.toList());
         closeFolder(inbox);
         return messages;
@@ -170,6 +170,9 @@ public class JamesHelper {
 
     private Folder openInbox(String userName, String password) throws MessagingException {
         store = mailSession.getStore("pop3");
+        System.out.println("Test EMAIL username = " + userName);
+        System.out.println("Test  EMAIL userPassword = " + password);
+
         store.connect(mailServer, userName, password);
         Folder folder = store.getDefaultFolder().getFolder("INBOX");
         folder.open(Folder.READ_WRITE);
@@ -186,5 +189,17 @@ public class JamesHelper {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public String findConfirmationLink(List<MailMessage> mailMessages, String email) {
+        MailMessage mailMessage = mailMessages.stream().filter((m) -> m.to.equals(email)).findAny().get();
+        VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
+        return regex.getText(mailMessage.text);
+    }
+
+    public String findChangePasswordLink(List<MailMessage> mailMessages, String email) {
+        MailMessage mailMessage = mailMessages.stream().filter((m) -> m.to.equals(email)).filter((m) -> m.text.contains("requested a password change")).findAny().get();
+        VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
+        return regex.getText(mailMessage.text);
     }
 }

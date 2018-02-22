@@ -28,6 +28,11 @@ public class UserData {
     @Column(name = "enabled", columnDefinition = "TINYINT")
     private int enabled;
 
+
+    public int getId() {
+        return id;
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -94,4 +99,5 @@ public class UserData {
 
         return Objects.hash(id, userName, email, access_level, enabled);
     }
+
 }

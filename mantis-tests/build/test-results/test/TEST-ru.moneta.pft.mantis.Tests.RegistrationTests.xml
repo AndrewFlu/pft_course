@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.moneta.pft.mantis.Tests.RegistrationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-02-22T20:52:29" hostname="DESKTOP-H8N3ONL" time="23.596">
+  <properties/>
+  <testcase name="testRegistration" classname="ru.moneta.pft.mantis.Tests.RegistrationTests" time="23.596"/>
+  <system-out><![CDATA[JAMES Remote Administration Tool 2.3.1
+Please enter your login and password
+Login id:root
+
+Password:root
+
+Welcome root. HELP for a list of commandsadduser user1519332749957 password
+
+User user1519332749957 addedquit
+Test EMAIL username = user1519332749957
+Test  EMAIL userPassword = password
+Test EMAIL username = user1519332749957
+Test  EMAIL userPassword = password
+Test EMAIL username = user1519332749957
+Test  EMAIL userPassword = password
+Test EMAIL username = user1519332749957
+Test  EMAIL userPassword = password
+Test EMAIL username = user1519332749957
+Test  EMAIL userPassword = password
+Test EMAIL username = user1519332749957
+Test  EMAIL userPassword = password
+Test EMAIL username = user1519332749957
+Test  EMAIL userPassword = password
+Test EMAIL username = user1519332749957
+Test  EMAIL userPassword = password
+Test EMAIL username = user1519332749957
+Test  EMAIL userPassword = password
+Test EMAIL username = user1519332749957
+Test  EMAIL userPassword = password
+Test EMAIL username = user1519332749957
+Test  EMAIL userPassword = password
+Test EMAIL username = user1519332749957
+Test  EMAIL userPassword = password
+Test EMAIL username = user1519332749957
+Test  EMAIL userPassword = password
+Test EMAIL username = user1519332749957
+Test  EMAIL userPassword = password
+Test EMAIL username = user1519332749957
+Test  EMAIL userPassword = password
+Test EMAIL username = user1519332749957
+Test  EMAIL userPassword = password
+Test EMAIL username = user1519332749957
+Test  EMAIL userPassword = password
+]]></system-out>
+  <system-err><![CDATA[Starting ChromeDriver 2.34.522940 (1a76f96f66e3ca7b8e57d503b4dd3bccfba87af1) on port 47268
+Only local connections are allowed.
+фев 22, 2018 11:52:33 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+</testsuite>

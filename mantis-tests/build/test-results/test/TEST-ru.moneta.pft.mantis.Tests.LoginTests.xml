@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.moneta.pft.mantis.Tests.LoginTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-02-22T20:52:56" hostname="DESKTOP-H8N3ONL" time="0.553">
+  <properties/>
+  <testcase name="httpTestLogin" classname="ru.moneta.pft.mantis.Tests.LoginTests" time="0.553"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

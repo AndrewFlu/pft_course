@@ -11,4 +11,5 @@ public class NavigationHelper extends HelperBase{
     public void loginPage() {
         wd.get(app.getProperty("web.baseUrl")+"login_page.php");
     }
+    public void manageUserPage() {wd.get(app.getProperty("web.baseUrl") + "manage_user_page.php");}
 }
