@@ -170,9 +170,6 @@ public class JamesHelper {
 
     private Folder openInbox(String userName, String password) throws MessagingException {
         store = mailSession.getStore("pop3");
-        System.out.println("Test EMAIL username = " + userName);
-        System.out.println("Test  EMAIL userPassword = " + password);
-
         store.connect(mailServer, userName, password);
         Folder folder = store.getDefaultFolder().getFolder("INBOX");
         folder.open(Folder.READ_WRITE);
