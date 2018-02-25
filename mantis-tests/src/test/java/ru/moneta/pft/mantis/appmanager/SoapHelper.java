@@ -30,6 +30,15 @@ public class SoapHelper {
         return Arrays.asList(projects).stream().map((p) -> (new Project().withId(p.getId().intValue()).withName(p.getName()))).collect(Collectors.toSet());
     }
 
+    public Set<Issue> getIssues(int projectId) throws MalformedURLException, ServiceException, RemoteException {
+        MantisConnectPortType mc = getMantisConnect();
+        IssueData[] issuesInProject = mc.mc_project_get_issues(app.getProperty("soap.adminlogin"),
+                app.getProperty("soap.adminpassword"), BigInteger.valueOf(projectId), null, null);
+        return Arrays.asList(issuesInProject).stream()
+                .map((i) -> (new Issue().withId(i.getId().intValue())).withSummary(i.getSummary())
+                .withDescription(i.getDescription())).collect(Collectors.toSet());
+    }
+
     public MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException {
         return new MantisConnectLocator().getMantisConnectPort(new URL(app.getProperty("soap.url")));
     }
@@ -48,5 +57,24 @@ public class SoapHelper {
                 .withDescription(createdIssueData.getDescription())
                 .withProject(new Project().withId(createdIssueData.getId().intValue())
                                           .withName(createdIssueData.getProject().getName()));
+    }
+
+    public String checkIssueStatus(int issueId) throws MalformedURLException, ServiceException, RemoteException {
+        MantisConnectPortType mc = getMantisConnect();
+        BigInteger Id = BigInteger.valueOf(issueId);
+        IssueData issueData = mc.mc_issue_get(app.getProperty("soap.adminlogin"), app.getProperty("soap.adminpassword"), BigInteger.valueOf(issueId));
+        ObjectRef status = issueData.getStatus();
+        System.out.println("Issue has status " + status.getName() + " and id = " + status.getId());
+        return status.getName();
+    }
+
+
+    public void closed(Issue issue) throws MalformedURLException, ServiceException, RemoteException {
+        MantisConnectPortType mc = getMantisConnect();
+        IssueData issueData = mc.mc_issue_get(app.getProperty("soap.adminlogin"), app.getProperty("soap.adminpassword"), BigInteger.valueOf(issue.getId()));
+        issueData.setStatus(new ObjectRef(BigInteger.valueOf(90), "closed"));
+        BigInteger issueId = mc.mc_issue_add(app.getProperty("soap.adminlogin"), app.getProperty("soap.adminpassword"), issueData);
+        IssueData modifyIssue = mc.mc_issue_get(app.getProperty("soap.adminlogin"), app.getProperty("soap.adminpassword"), issueId);
+
     }
 }
