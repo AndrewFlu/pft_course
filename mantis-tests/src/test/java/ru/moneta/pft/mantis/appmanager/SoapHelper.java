@@ -61,7 +61,6 @@ public class SoapHelper {
 
     public String checkIssueStatus(int issueId) throws MalformedURLException, ServiceException, RemoteException {
         MantisConnectPortType mc = getMantisConnect();
-        BigInteger Id = BigInteger.valueOf(issueId);
         IssueData issueData = mc.mc_issue_get(app.getProperty("soap.adminlogin"), app.getProperty("soap.adminpassword"), BigInteger.valueOf(issueId));
         ObjectRef status = issueData.getStatus();
         System.out.println("Issue has status " + status.getName() + " and id = " + status.getId());
@@ -69,12 +68,17 @@ public class SoapHelper {
     }
 
 
-    public void closed(Issue issue) throws MalformedURLException, ServiceException, RemoteException {
+    public Issue closed(Issue issue) throws MalformedURLException, ServiceException, RemoteException {
         MantisConnectPortType mc = getMantisConnect();
-        IssueData issueData = mc.mc_issue_get(app.getProperty("soap.adminlogin"), app.getProperty("soap.adminpassword"), BigInteger.valueOf(issue.getId()));
-        issueData.setStatus(new ObjectRef(BigInteger.valueOf(90), "closed"));
-        BigInteger issueId = mc.mc_issue_add(app.getProperty("soap.adminlogin"), app.getProperty("soap.adminpassword"), issueData);
+
+        IssueData modIssue = mc.mc_issue_get(app.getProperty("soap.adminlogin"), app.getProperty("soap.adminpassword"), BigInteger.valueOf(issue.getId()));
+        modIssue.setStatus(new ObjectRef(BigInteger.valueOf(90), "closed"));
+        modIssue.setId(BigInteger.valueOf(issue.getId()));
+        BigInteger issueId = mc.mc_issue_add(app.getProperty("soap.adminlogin"), app.getProperty("soap.adminpassword"), modIssue);
+
         IssueData modifyIssue = mc.mc_issue_get(app.getProperty("soap.adminlogin"), app.getProperty("soap.adminpassword"), issueId);
 
+        return new Issue().withId(modifyIssue.getId().intValue()).withSummary(modifyIssue.getSummary()).withDescription(modifyIssue.getDescription())
+                .withProject(new Project().withId(modifyIssue.getProject().getId().intValue()).withName(modifyIssue.getProject().getName()));
     }
 }
