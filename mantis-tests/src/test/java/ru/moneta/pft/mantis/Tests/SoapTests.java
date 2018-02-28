@@ -1,21 +1,18 @@
 package ru.moneta.pft.mantis.Tests;
 
-import biz.futureware.mantis.rpc.soap.client.MantisConnectLocator;
-import biz.futureware.mantis.rpc.soap.client.MantisConnectPortType;
-import biz.futureware.mantis.rpc.soap.client.ProjectData;
-import org.testng.Assert;
+import org.hamcrest.CoreMatchers;
 import org.testng.annotations.Test;
 import ru.moneta.pft.mantis.model.Issue;
 import ru.moneta.pft.mantis.model.Project;
 
 import javax.xml.rpc.ServiceException;
-import java.math.BigInteger;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.Set;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class SoapTests extends TestBase{
 
@@ -56,12 +53,12 @@ public class SoapTests extends TestBase{
         skipIfNotFixed(issue.getId());
 
         Issue modifyIssue = app.soap().closed(issue);
-        String status = app.soap().checkIssueStatus(modifyIssue.getId());
+        assertThat(modifyIssue.getStatus().getStatusName(), CoreMatchers.equalTo("closed"));
     }
 
     @Test
     public void testIssueStatus() throws RemoteException, ServiceException, MalformedURLException {
-        String status = app.soap().checkIssueStatus(8);
+        String status = app.soap().checkIssueStatus(1);
         System.out.println(status);
 
     }

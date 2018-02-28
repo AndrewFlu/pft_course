@@ -3,6 +3,7 @@ package ru.moneta.pft.mantis.appmanager;
 import biz.futureware.mantis.rpc.soap.client.*;
 import ru.moneta.pft.mantis.model.Issue;
 import ru.moneta.pft.mantis.model.Project;
+import ru.moneta.pft.mantis.model.Status;
 
 import javax.xml.rpc.ServiceException;
 import java.math.BigInteger;
@@ -70,15 +71,17 @@ public class SoapHelper {
 
     public Issue closed(Issue issue) throws MalformedURLException, ServiceException, RemoteException {
         MantisConnectPortType mc = getMantisConnect();
-
+        // берем нужный баг репорт
         IssueData modIssue = mc.mc_issue_get(app.getProperty("soap.adminlogin"), app.getProperty("soap.adminpassword"), BigInteger.valueOf(issue.getId()));
+        // меняем ему статус и ID
         modIssue.setStatus(new ObjectRef(BigInteger.valueOf(90), "closed"));
         modIssue.setId(BigInteger.valueOf(issue.getId()));
-        BigInteger issueId = mc.mc_issue_add(app.getProperty("soap.adminlogin"), app.getProperty("soap.adminpassword"), modIssue);
-
-        IssueData modifyIssue = mc.mc_issue_get(app.getProperty("soap.adminlogin"), app.getProperty("soap.adminpassword"), issueId);
-
+        // обновляем баг репорт новыми данными
+        mc.mc_issue_update(app.getProperty("soap.adminlogin"), app.getProperty("soap.adminpassword"), modIssue.getId(), modIssue);
+        IssueData modifyIssue = mc.mc_issue_get(app.getProperty("soap.adminlogin"), app.getProperty("soap.adminpassword"), modIssue.getId());
+        ObjectRef status = modifyIssue.getStatus();
         return new Issue().withId(modifyIssue.getId().intValue()).withSummary(modifyIssue.getSummary()).withDescription(modifyIssue.getDescription())
-                .withProject(new Project().withId(modifyIssue.getProject().getId().intValue()).withName(modifyIssue.getProject().getName()));
+                .withProject(new Project().withId(modifyIssue.getProject().getId().intValue()).withName(modifyIssue.getProject().getName()))
+                .withStatus(new Status().withStatusId(modifyIssue.getStatus().getId().intValue()).withStatus(status.getName())) ;
     }
 }

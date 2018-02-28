@@ -6,7 +6,7 @@ public class Issue {
     private String summary;
     private String description;
     private Project project;
-    private String status;
+    private Status status;
 
     public int getId() {
         return id;
@@ -24,7 +24,7 @@ public class Issue {
         return project;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
@@ -48,7 +48,7 @@ public class Issue {
         return this;
     }
 
-    public Issue withStatus(String status) {
+    public Issue withStatus(Status status) {
         this.status = status;
         return this;
     }
