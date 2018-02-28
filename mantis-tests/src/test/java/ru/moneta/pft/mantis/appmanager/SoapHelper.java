@@ -74,7 +74,7 @@ public class SoapHelper {
         // берем нужный баг репорт
         IssueData modIssue = mc.mc_issue_get(app.getProperty("soap.adminlogin"), app.getProperty("soap.adminpassword"), BigInteger.valueOf(issue.getId()));
         // меняем ему статус и ID
-        modIssue.setStatus(new ObjectRef(BigInteger.valueOf(90), "closed"));
+        modIssue.setStatus(new ObjectRef(BigInteger.valueOf(Long.parseLong(app.getProperty("soap.closedStatusCode"))), "closed"));
         modIssue.setId(BigInteger.valueOf(issue.getId()));
         // обновляем баг репорт новыми данными
         mc.mc_issue_update(app.getProperty("soap.adminlogin"), app.getProperty("soap.adminpassword"), modIssue.getId(), modIssue);
