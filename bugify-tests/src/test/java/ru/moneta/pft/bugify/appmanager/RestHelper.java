@@ -32,12 +32,33 @@ public class RestHelper {
     public int createIssue(Issue newIssue) throws IOException {
         String json = getExecutor().execute(Request.Post("http://demo.bugify.com/api/issues.json")
                 .bodyForm(new BasicNameValuePair("subject", newIssue.getSubject()),
-                        new BasicNameValuePair("description", newIssue.getDescription()))).returnContent().asString();
+                          new BasicNameValuePair("description", newIssue.getDescription())))
+                .returnContent().asString();
         JsonElement parsed = new JsonParser().parse(json);
         return parsed.getAsJsonObject().get("issue_id").getAsInt();
     }
 
+    public String getIssueStatus(int issueId) throws IOException {
+        String json = getExecutor().execute(Request.Get(String.format("http://demo.bugify.com/api/issues/%d.json", issueId))).returnContent().asString();
+        JsonElement parsed = new JsonParser().parse(json);
+        JsonElement issueJson = parsed.getAsJsonObject().get("issues");
+        JsonElement issueElements = issueJson.getAsJsonArray().get(0);
+        String issueStatus = issueElements.getAsJsonObject().get("state_name").getAsString();
+        return issueStatus;
+    }
+
     public Executor getExecutor(){
         return Executor.newInstance().auth("28accbe43ea112d9feb328d2c00b3eed", "");
+    }
+
+    public void closeIssue(Issue testIssue) throws IOException {
+        String json = getExecutor().execute(Request.Post("http://demo.bugify.com/api/issues/" + testIssue.getId() + ".json")
+                .bodyForm(new BasicNameValuePair("method", "update"),
+                        new BasicNameValuePair("issue[state]", "3")))
+                .returnContent().asString();
+
+        JsonElement parsed = new JsonParser().parse(json);
+        JsonElement message = parsed.getAsJsonObject().get("message");
+        System.out.println(message.getAsString());
     }
 }

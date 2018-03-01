@@ -12,7 +12,6 @@ import java.util.Set;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 public class SoapTests extends TestBase{
 
@@ -55,13 +54,5 @@ public class SoapTests extends TestBase{
         Issue modifyIssue = app.soap().closed(issue);
         assertThat(modifyIssue.getStatus().getStatusName(), CoreMatchers.equalTo("closed"));
     }
-
-    @Test
-    public void testIssueStatus() throws RemoteException, ServiceException, MalformedURLException {
-        String status = app.soap().checkIssueStatus(1);
-        System.out.println(status);
-
-    }
-
 
 }

@@ -7,6 +7,8 @@ import ru.moneta.pft.bugify.model.Issue;
 import java.io.IOException;
 import java.util.Set;
 
+import static org.testng.AssertJUnit.assertEquals;
+
 public class RestTests extends TestBase{
 
     @Test
@@ -22,13 +24,14 @@ public class RestTests extends TestBase{
     @Test
     public void testCloseIssue() throws IOException {
         Issue testIssue = app.rest().getIssues().iterator().next();
-        isIssueOpen(testIssue.getId());
+
+        // проверяем статус выбранного issue. Если статус отличается от "Решена" - тест игнорируется.
+        // иначе - задача автоматически переводится в статус "Закрыта"
+        skipIfNotFixed(testIssue.getId());
+
+        app.rest().closeIssue(testIssue);
+        String updatedIssueStatus = app.rest().getIssueStatus(testIssue.getId());
+        assertEquals("Closed", updatedIssueStatus);
 
     }
-
-    @Test
-    public void testGetIssueStatus(){
-        
-    }
-
 }

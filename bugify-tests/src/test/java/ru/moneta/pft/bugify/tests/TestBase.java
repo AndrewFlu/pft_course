@@ -1,9 +1,6 @@
 package ru.moneta.pft.bugify.tests;
 
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import org.apache.http.client.fluent.Request;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.SkipException;
 import org.testng.annotations.AfterSuite;
@@ -28,16 +25,13 @@ public class TestBase {
     }
 
     public boolean isIssueOpen(int issueId) throws IOException {
-        String json = app.rest().getExecutor().execute(Request.Get(String.format("http://demo.bugify.com/api/issues/%d.json", issueId))).returnContent().asString();
-        JsonElement parsed = new JsonParser().parse(json);
-        JsonElement issue = parsed.getAsJsonObject().get("issues");
-        System.out.println(issue);
-        return true;
+        String status = app.rest().getIssueStatus(issueId);
+        return ! status.equals("Resolved");
     }
 
     public void skipIfNotFixed(int issueId) throws SkipException, IOException {
         if (isIssueOpen(issueId)){
-            throw new SkipException("Ignored because of issue status with Id" + issueId + " is not resolved");
+            throw new SkipException("Ignored because of issue with id " + issueId + " is not resolved");
         }
     }
 
