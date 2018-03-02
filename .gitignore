@@ -1,6 +1,7 @@
 .gradle
 /build/
-
+test-results/
+reports/
 # Ignore Gradle GUI config
 gradle-app.setting
 
@@ -17,3 +18,6 @@ sandbox/out/production/classes/ru/moneta/pft/sandbox/FirstProgram.class
 *.class
 *.log
 .idea/vcs.xml
+*.bin
+*.idx
+*.js
