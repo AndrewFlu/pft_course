@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-suite xmlns:ns2="urn:model.allure.qatools.yandex.ru" start="1520183147816" stop="1520183156534">
+    <name>Suite1</name>
+    <test-cases>
+        <test-case start="1520183147878" stop="1520183149645" status="passed">
+            <name>testBadGroupCreation</name>
+            <steps/>
+            <attachments/>
+            <labels/>
+        </test-case>
+        <test-case start="1520183149761" stop="1520183150877" status="passed">
+            <name>testGroupCreation[GroupData{id=2147483647, name='Name 0', header='Header 0', footer='Footer 0'}]</name>
+            <steps/>
+            <attachments/>
+            <labels/>
+        </test-case>
+        <test-case start="1520183150881" stop="1520183151903" status="passed">
+            <name>testGroupCreation[GroupData{id=2147483647, name='Name 1', header='Header 1', footer='Footer 1'}]</name>
+            <steps/>
+            <attachments/>
+            <labels/>
+        </test-case>
+        <test-case start="1520183151906" stop="1520183152842" status="passed">
+            <name>testGroupCreation[GroupData{id=2147483647, name='Name 2', header='Header 2', footer='Footer 2'}]</name>
+            <steps/>
+            <attachments/>
+            <labels/>
+        </test-case>
+        <test-case start="1520183152844" stop="1520183153765" status="passed">
+            <name>testGroupCreation[GroupData{id=2147483647, name='Name 3', header='Header 3', footer='Footer 3'}]</name>
+            <steps/>
+            <attachments/>
+            <labels/>
+        </test-case>
+        <test-case start="1520183153768" stop="1520183154764" status="passed">
+            <name>testGroupCreation[GroupData{id=2147483647, name='Name 4', header='Header 4', footer='Footer 4'}]</name>
+            <steps/>
+            <attachments/>
+            <labels/>
+        </test-case>
+        <test-case start="1520183154809" stop="1520183155897" status="passed">
+            <name>testGroupModification</name>
+            <steps/>
+            <attachments/>
+            <labels/>
+        </test-case>
+        <test-case start="1520183155943" stop="1520183156530" status="passed">
+            <name>testGroupDeletion</name>
+            <steps/>
+            <attachments/>
+            <labels/>
+        </test-case>
+    </test-cases>
+    <labels/>
+</ns2:test-suite>
