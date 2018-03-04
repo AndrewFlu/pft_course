@@ -6,6 +6,7 @@
             <class name="ru.moneta.pft.addressbook.tests.GroupCreationTests" />
             <class name="ru.moneta.pft.addressbook.tests.GroupModificationTests" />
             <class name="ru.moneta.pft.addressbook.tests.GroupDeletionTests" />
+            
         </classes>
     </test>
 </suite>
