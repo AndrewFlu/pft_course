@@ -56,12 +56,12 @@ public class ApplicationManager {
 
 
             if (browser.equals(BrowserType.FIREFOX)) {
+                //wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
+                wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true).setBinary(properties.getProperty("browser.firefox")));
+
+            } else if (browser.equals(BrowserType.CHROME)){
                 wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
-                //wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true).setBinary(properties.getProperty("browser.firefox")));
-                wd.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-            } else if (browser.equals(BrowserType.GOOGLECHROME)){
-                wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
-                wd.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
             } else if (browser.equals(BrowserType.IE)) {
                 wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
                 wd.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
@@ -69,6 +69,7 @@ public class ApplicationManager {
         }
 
         wd.get(properties.getProperty("web.baseUrl"));
+
         contactHelper = new ContactHelper(wd);
         sessionHelper = new SessionHelper(wd);
         navigationHelper = new NavigationHelper(wd);
