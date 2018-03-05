@@ -21,3 +21,14 @@ sandbox/out/production/classes/ru/moneta/pft/sandbox/FirstProgram.class
 *.bin
 *.idx
 *.js
+addressbook-web-tests/out/test/resources/groups.json
+addressbook-web-tests/out/test/resources/groups.csv
+addressbook-web-tests/out/test/resources/contacts.xml
+addressbook-web-tests/out/test/resources/contacts.json
+addressbook-web-tests/out/test/resources/testng-groups.xml
+addressbook-web-tests/out/test/resources/testng-contacts.xml
+addressbook-web-tests/out/test/resources/remote.properties
+addressbook-web-tests/src/test/resources/testng-groups.xml
+addressbook-web-tests/out/test/resources/logback.xml
+addressbook-web-tests/src/test/resources/testng-groups.xml
+addressbook-web-tests/out/test/resources/hibernate.cfg.xml
