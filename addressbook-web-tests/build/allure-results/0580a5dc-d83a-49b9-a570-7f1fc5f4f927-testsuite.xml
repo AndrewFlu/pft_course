@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns2:test-suite xmlns:ns2="urn:model.allure.qatools.yandex.ru" start="1520247742409" stop="1520247750946">
+<ns2:test-suite xmlns:ns2="urn:model.allure.qatools.yandex.ru" start="1520359057689" stop="1520359067955">
     <name>Suite1</name>
     <test-cases>
-        <test-case start="1520247742449" stop="1520247743981" status="passed">
+        <test-case start="1520359057720" stop="1520359060370" status="passed">
             <name>testBadGroupCreation</name>
             <steps/>
             <attachments/>
             <labels/>
         </test-case>
-        <test-case start="1520247744061" stop="1520247745085" status="passed">
+        <test-case start="1520359060455" stop="1520359061728" status="passed">
             <name>testGroupCreation[GroupData{id=2147483647, name='Name 0', header='Header 0', footer='Footer 0'}]</name>
             <steps/>
             <attachments/>
             <labels/>
         </test-case>
-        <test-case start="1520247745089" stop="1520247746232" status="passed">
+        <test-case start="1520359061733" stop="1520359062888" status="passed">
             <name>testGroupCreation[GroupData{id=2147483647, name='Name 1', header='Header 1', footer='Footer 1'}]</name>
             <steps/>
             <attachments/>
             <labels/>
         </test-case>
-        <test-case start="1520247746235" stop="1520247747216" status="passed">
+        <test-case start="1520359062891" stop="1520359063970" status="passed">
             <name>testGroupCreation[GroupData{id=2147483647, name='Name 2', header='Header 2', footer='Footer 2'}]</name>
             <steps/>
             <attachments/>
             <labels/>
         </test-case>
-        <test-case start="1520247747218" stop="1520247748212" status="passed">
+        <test-case start="1520359063973" stop="1520359064993" status="passed">
             <name>testGroupCreation[GroupData{id=2147483647, name='Name 3', header='Header 3', footer='Footer 3'}]</name>
             <steps/>
             <attachments/>
             <labels/>
         </test-case>
-        <test-case start="1520247748214" stop="1520247749277" status="passed">
+        <test-case start="1520359064995" stop="1520359066028" status="passed">
             <name>testGroupCreation[GroupData{id=2147483647, name='Name 4', header='Header 4', footer='Footer 4'}]</name>
             <steps/>
             <attachments/>
             <labels/>
         </test-case>
-        <test-case start="1520247749299" stop="1520247750419" status="passed">
+        <test-case start="1520359066058" stop="1520359067332" status="passed">
             <name>testGroupModification</name>
             <steps/>
             <attachments/>
             <labels/>
         </test-case>
-        <test-case start="1520247750440" stop="1520247750942" status="passed">
+        <test-case start="1520359067364" stop="1520359067951" status="passed">
             <name>testGroupDeletion</name>
             <steps/>
             <attachments/>
