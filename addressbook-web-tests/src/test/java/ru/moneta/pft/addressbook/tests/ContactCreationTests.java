@@ -24,6 +24,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreationTests extends TestBase{
 
+
     @DataProvider // xml
     public Iterator <Object[]> validContactsFromXml() throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")))){
@@ -68,8 +69,8 @@ public class ContactCreationTests extends TestBase{
     public void testContactCreation(ContactData contact) {
         Groups groups = app.db().groups();
         Contacts before = app.db().contacts();
-        File photo = new File("src/test/resources/bandit.jpg");
-        contact.withPhoto(photo).inGroup(groups.iterator().next());
+        //File photo = new File("src/test/resources/bandit.jpg"); //не перекладывается на удаленный сервер
+        contact.inGroup(groups.iterator().next());
 
         app.goTo().ContactPage();
         app.contact().create(contact);
