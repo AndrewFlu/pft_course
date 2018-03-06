@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-suite xmlns:ns2="urn:model.allure.qatools.yandex.ru" start="1520366914644" stop="1520366955445">
+    <name>Default Suite</name>
+    <test-cases>
+        <test-case start="1520366915348" stop="1520366923801" status="passed">
+            <name>testContactCreation[ContactData{id=2147483647, firstName='Name 0', middleName='MiddleName 0', lastName='LastName 0', nickName='NickName0', company='Company 0', address='Russia, Petrova 0', address2='secondAddress 0', homePhone='+79015050400', mobilePhone='89112225500', workPhone='55-77-50', email='first.email0@yahoo.com', email2='second.email0@gmail.com', email3='0@mail.ru'}]</name>
+            <steps/>
+            <attachments/>
+            <labels/>
+        </test-case>
+        <test-case start="1520366923967" stop="1520366931800" status="passed">
+            <name>testContactCreation[ContactData{id=2147483647, firstName='Name 1', middleName='MiddleName 1', lastName='LastName 1', nickName='NickName1', company='Company 1', address='Russia, Petrova 1', address2='secondAddress 1', homePhone='+79015050401', mobilePhone='89112225501', workPhone='55-77-51', email='first.email1@yahoo.com', email2='second.email1@gmail.com', email3='1@mail.ru'}]</name>
+            <steps/>
+            <attachments/>
+            <labels/>
+        </test-case>
+        <test-case start="1520366931869" stop="1520366939797" status="passed">
+            <name>testContactCreation[ContactData{id=2147483647, firstName='Name 2', middleName='MiddleName 2', lastName='LastName 2', nickName='NickName2', company='Company 2', address='Russia, Petrova 2', address2='secondAddress 2', homePhone='+79015050402', mobilePhone='89112225502', workPhone='55-77-52', email='first.email2@yahoo.com', email2='second.email2@gmail.com', email3='2@mail.ru'}]</name>
+            <steps/>
+            <attachments/>
+            <labels/>
+        </test-case>
+        <test-case start="1520366939855" stop="1520366947891" status="passed">
+            <name>testContactCreation[ContactData{id=2147483647, firstName='Name 3', middleName='MiddleName 3', lastName='LastName 3', nickName='NickName3', company='Company 3', address='Russia, Petrova 3', address2='secondAddress 3', homePhone='+79015050403', mobilePhone='89112225503', workPhone='55-77-53', email='first.email3@yahoo.com', email2='second.email3@gmail.com', email3='3@mail.ru'}]</name>
+            <steps/>
+            <attachments/>
+            <labels/>
+        </test-case>
+        <test-case start="1520366947934" stop="1520366955441" status="passed">
+            <name>testContactCreation[ContactData{id=2147483647, firstName='Name 4', middleName='MiddleName 4', lastName='LastName 4', nickName='NickName4', company='Company 4', address='Russia, Petrova 4', address2='secondAddress 4', homePhone='+79015050404', mobilePhone='89112225504', workPhone='55-77-54', email='first.email4@yahoo.com', email2='second.email4@gmail.com', email3='4@mail.ru'}]</name>
+            <steps/>
+            <attachments/>
+            <labels/>
+        </test-case>
+    </test-cases>
+    <labels/>
+</ns2:test-suite>

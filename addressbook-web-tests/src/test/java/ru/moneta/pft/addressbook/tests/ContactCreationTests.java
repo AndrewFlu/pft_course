@@ -70,7 +70,7 @@ public class ContactCreationTests extends TestBase{
         Groups groups = app.db().groups();
         Contacts before = app.db().contacts();
         //File photo = new File("src/test/resources/bandit.jpg"); //не перекладывается на удаленный сервер
-        contact.inGroup(groups.iterator().next());
+        contact.inGroup(groups.iterator().next()); //.withPhoto(photo)
 
         app.goTo().ContactPage();
         app.contact().create(contact);
