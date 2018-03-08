@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-suite xmlns:ns2="urn:model.allure.qatools.yandex.ru" start="1520524638544" stop="1520524649294">
+    <name>Default Suite</name>
+    <test-cases>
+        <test-case start="1520524639416" stop="1520524649204" status="failed">
+            <name>runScenario["Group creation","Groups"]</name>
+            <failure>
+                <message>AssertionError: 
+Expected: &lt;[GroupData{id=2147483647, name='xxx', header='yyy', footer='zzz'}, GroupData{id=494, name='test name', header='test header', footer='test footer'}, GroupData{id=493, name='ToAddContactGroup', header='', footer=''}, GroupData{id=495, name='test name', header='test header', footer='test footer'}, GroupData{id=492, name='NewGroup1', header='NewHeader1', footer='NewFooter1'}, GroupData{id=496, name='test name', header='test header', footer='test footer'}]&gt;
+     but: was &lt;[GroupData{id=497, name='xxx', header='yyy', footer='zzz'}, GroupData{id=494, name='test name', header='test header', footer='test footer'}, GroupData{id=493, name='ToAddContactGroup', header='', footer=''}, GroupData{id=495, name='test name', header='test header', footer='test footer'}, GroupData{id=492, name='NewGroup1', header='NewHeader1', footer='NewFooter1'}, GroupData{id=496, name='test name', header='test header', footer='test footer'}]&gt;</message>
+                <stack-trace>java.lang.AssertionError: 
+Expected: &lt;[GroupData{id=2147483647, name='xxx', header='yyy', footer='zzz'}, GroupData{id=494, name='test name', header='test header', footer='test footer'}, GroupData{id=493, name='ToAddContactGroup', header='', footer=''}, GroupData{id=495, name='test name', header='test header', footer='test footer'}, GroupData{id=492, name='NewGroup1', header='NewHeader1', footer='NewFooter1'}, GroupData{id=496, name='test name', header='test header', footer='test footer'}]&gt;
+     but: was &lt;[GroupData{id=497, name='xxx', header='yyy', footer='zzz'}, GroupData{id=494, name='test name', header='test header', footer='test footer'}, GroupData{id=493, name='ToAddContactGroup', header='', footer=''}, GroupData{id=495, name='test name', header='test header', footer='test footer'}, GroupData{id=492, name='NewGroup1', header='NewHeader1', footer='NewFooter1'}, GroupData{id=496, name='test name', header='test header', footer='test footer'}]&gt;
+	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:18)
+	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:6)
+	at ru.moneta.pft.addressbook.bdd.GroupStepDefinitions.verifyGroupCreated(GroupStepDefinitions.java:52)
+	at ✽.the new set of groups is equal to old set with added group(bdd/groups.feature:5)
+</stack-trace>
+            </failure>
+            <steps/>
+            <attachments/>
+            <labels/>
+        </test-case>
+    </test-cases>
+    <labels/>
+</ns2:test-suite>
