@@ -32,3 +32,4 @@ addressbook-web-tests/src/test/resources/testng-groups.xml
 addressbook-web-tests/out/test/resources/logback.xml
 addressbook-web-tests/src/test/resources/testng-groups.xml
 addressbook-web-tests/out/test/resources/hibernate.cfg.xml
+addressbook-web-tests/build/tmp/testGroupsBdd/jar_extract_7643799459183680361_tmp
