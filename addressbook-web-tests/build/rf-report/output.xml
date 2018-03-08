@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.0.2 (Jython 2.7.0 on java1.8.0_151)" generated="20180308 12:49:53.568">
+<suite source="C:\courses\pft_course\addressbook-web-tests\src\test\resources\rf" name="Rf" id="s1">
+<suite source="C:\courses\pft_course\addressbook-web-tests\src\test\resources\rf\groups.robot" name="Groups" id="s1-s1">
+<kw type="setup" library="ru.moneta.pft.addressbook.rf.AddressbookKeywords" name="Init Application Manager">
+<msg level="INFO" timestamp="20180308 12:50:00.714">Starting ChromeDriver 2.34.522940 (1a76f96f66e3ca7b8e57d503b4dd3bccfba87af1) on port 9953
+Only local connections are allowed.
+��� 08, 2018 12:49:59 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS</msg>
+<status endtime="20180308 12:50:00.723" starttime="20180308 12:49:54.210" status="PASS"></status>
+</kw>
+<test name="Can Create Group With Valid Data" id="s1-s1-t1">
+<kw library="ru.moneta.pft.addressbook.rf.AddressbookKeywords" name="Get Group Count">
+<assign>
+<var>${old_count}</var>
+</assign>
+<msg level="INFO" timestamp="20180308 12:50:00.944">${old_count} = 4</msg>
+<status endtime="20180308 12:50:00.945" starttime="20180308 12:50:00.737" status="PASS"></status>
+</kw>
+<kw library="ru.moneta.pft.addressbook.rf.AddressbookKeywords" name="Create Group">
+<arguments>
+<arg>test name</arg>
+<arg>test header</arg>
+<arg>test footer</arg>
+</arguments>
+<status endtime="20180308 12:50:02.291" starttime="20180308 12:50:00.947" status="PASS"></status>
+</kw>
+<kw library="ru.moneta.pft.addressbook.rf.AddressbookKeywords" name="Get Group Count">
+<assign>
+<var>${new_count}</var>
+</assign>
+<msg level="INFO" timestamp="20180308 12:50:02.455">${new_count} = 5</msg>
+<status endtime="20180308 12:50:02.457" starttime="20180308 12:50:02.295" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Evaluate">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${old_count} + 1</arg>
+</arguments>
+<assign>
+<var>${expected_count}</var>
+</assign>
+<msg level="INFO" timestamp="20180308 12:50:02.475">${expected_count} = 5</msg>
+<status endtime="20180308 12:50:02.476" starttime="20180308 12:50:02.459" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Equal As Integers">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${new_count}</arg>
+<arg>${expected_count}</arg>
+</arguments>
+<status endtime="20180308 12:50:02.487" starttime="20180308 12:50:02.479" status="PASS"></status>
+</kw>
+<status critical="yes" endtime="20180308 12:50:02.490" starttime="20180308 12:50:00.728" status="PASS"></status>
+</test>
+<kw type="teardown" library="ru.moneta.pft.addressbook.rf.AddressbookKeywords" name="Stop Application Manager">
+<status endtime="20180308 12:50:03.283" starttime="20180308 12:50:02.506" status="PASS"></status>
+</kw>
+<status endtime="20180308 12:50:03.285" starttime="20180308 12:49:54.100" status="PASS"></status>
+</suite>
+<status endtime="20180308 12:50:03.313" starttime="20180308 12:49:53.597" status="PASS"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0">Critical Tests</stat>
+<stat pass="1" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" name="Rf" id="s1">Rf</stat>
+<stat pass="1" fail="0" name="Groups" id="s1-s1">Rf.Groups</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

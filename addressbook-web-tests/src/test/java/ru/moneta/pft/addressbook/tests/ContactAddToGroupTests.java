@@ -43,7 +43,7 @@ public class ContactAddToGroupTests extends TestBase {
         app.contact().addContactToGroup(testGroup, testContact);
         Contacts after = getNewContactsInTargetGroup(testGroup);
         assertThat(after, equalTo(before.withAdded(testContact)));
-    }
+     }
 
 
     public Object [] checkProperPreconditions(){
